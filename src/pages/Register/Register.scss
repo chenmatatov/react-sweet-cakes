@@ -1,0 +1,134 @@
+.register-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 100vw;
+  background: linear-gradient(to bottom right, #ffe4e1, #ffb6c1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.register-card {
+  background-color: #fff0f5;
+  padding: 60px 50px;
+  border-radius: 30px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+  width: 90%;
+  max-width: 500px;
+  text-align: center;
+  transition: transform 0.3s;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+
+  h1 {
+    color: #d96ca3;
+    margin-bottom: 40px;
+    font-size: 2rem;
+  }
+
+  .register-error {
+    background: #ffd6e0;
+    padding: 10px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    color: #ff4d6d;
+    font-weight: bold;
+  }
+
+  .success {
+    background: #e0ffe4;
+    padding: 10px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    color: #3c8b3c;
+    font-weight: bold;
+  }
+
+  .register-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+
+    label {
+      font-weight: bold;
+      color: #c04e8b;
+      text-align: right;
+    }
+
+    .show-password {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      color: #c04e8b;
+      cursor: pointer;
+      margin-bottom: 10px;
+      
+      input[type="checkbox"] {
+        width: auto;
+        margin: 0;
+      }
+    }
+
+    input {
+      padding: 14px;
+      border-radius: 12px;
+      border: 1px solid #f5c6e0;
+      outline: none;
+      font-size: 1.1rem;
+
+      &:focus {
+        border-color: #d96ca3;
+        box-shadow: 0 0 8px rgba(217,108,163,0.5);
+      }
+    }
+
+    .error {
+      color: #ff4d6d;
+      font-size: 0.9rem;
+      text-align: right;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 15px;
+      border: none;
+      border-radius: 15px;
+      background: #d96ca3;
+      color: white;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+
+      &:hover {
+        background: #c04e8b;
+        transform: scale(1.05);
+      }
+    }
+  }
+
+  .login-link {
+    margin-top: 20px;
+    font-size: 1rem;
+    color: #c04e8b;
+
+    a {
+      color: #d96ca3;
+      font-weight: bold;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .register-card {
+    padding: 40px 30px;
+  }
+}

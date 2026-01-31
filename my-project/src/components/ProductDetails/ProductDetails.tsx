@@ -97,7 +97,6 @@ const ProductDetails = () => {
   return (
     <>
     <div className="product-details-container">
-      {/* צד ימין - פרטי מוצר */}
       <div className="product-info">
         <h1>{product.name}</h1>
 
@@ -114,7 +113,6 @@ const ProductDetails = () => {
         <p className="description">תיאור המוצר: {product.description}</p>
       </div>
 
-      {/* צד שמאל - חוות דעת */}
       <div className="reviews-container">
         <h2>חוות דעת</h2>
 

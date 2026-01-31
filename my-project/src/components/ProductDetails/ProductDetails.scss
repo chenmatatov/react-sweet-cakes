@@ -2,19 +2,18 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  gap: 40px;                // רווח בין העמודות
+  gap: 40px;
   padding: 20px;
   min-height: 80vh;
   background-color: #fff0f5;
   box-sizing: border-box;
-  direction: rtl;           // שמירה על RTL
-  flex-wrap: wrap;          // במקרה שהמסך קטן
+  direction: rtl;
+  flex-wrap: wrap;
   width: 100vw;
 }
 
-/* צד ימין - פרטי מוצר */
 .product-info {
-  flex: 1;                  // תופס חצי מהעיצוב או יותר לפי המסך
+  flex: 1;
   max-width: 500px;
   text-align: center;
 
@@ -40,16 +39,15 @@
 
   .product-image {
     width: 100%;
-    max-height: 400px;     // חצי גובה המסך בערך
+    max-height: 400px;
     object-fit: cover;
     border-radius: 12px;
     margin-bottom: 20px;
   }
 }
 
-/* צד שמאל - תגובות */
 .reviews-container {
-  flex: 1;                  // תופס חצי או יותר
+  flex: 1;
   max-width: 500px;
   display: flex;
   flex-direction: column;
@@ -61,15 +59,15 @@
   }
 
   .review {
-    background-color:   #f8c1c1;
+    background-color: #f8c1c1;
     border-radius: 12px;
     padding: 15px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     text-align: right;
     max-height: 120px;
-    overflow-y: auto;       // גלילה פנימית לתגובה ארוכה
+    overflow-y: auto;
     position: relative;
-      color: #333;
+    color: #333;
 
     button {
       position: absolute;
@@ -102,7 +100,7 @@
     cursor: pointer;
   }
 }
-/* טופס תגובה */
+
 .review-form {
   background-color: #fff0f5;
   border-radius: 12px;
@@ -226,7 +224,7 @@
     }
   }
 }
-/* רספונסיביות למסכים קטנים */
+
 @media (max-width: 900px) {
   .product-details-container {
     flex-direction: column;

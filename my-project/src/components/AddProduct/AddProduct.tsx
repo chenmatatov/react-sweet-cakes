@@ -3,15 +3,12 @@ import "./AddProduct.scss";
 import axios from "axios";
 
 const AddProduct = () => {
-  // States לטופס
   const [name, setName] = useState("");
   const [price, setPrice] = useState<number>(0);
   const [category, setCategory] = useState<number>(1);
   const [description, setDescription] = useState("");
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
-
-  // משתמש מחובר (לדוגמה מ-localStorage)
   const storedUser = localStorage.getItem("currentUser");
   const currentUser = storedUser ? JSON.parse(storedUser) : null;
 
@@ -44,7 +41,6 @@ const AddProduct = () => {
       setSuccess("המוצר נוסף בהצלחה!");
       setError("");
 
-      // איפוס הטופס
       setName("");
       setPrice(0);
       setCategory(1);

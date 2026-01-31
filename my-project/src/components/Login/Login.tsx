@@ -26,11 +26,9 @@ const Login: React.FC = () => {
 
   const handleSubmit = async (values: LoginValues) => {
     try {
-      // קריאה לשרת JSON
       const response = await axios.get("http://localhost:3000/users");
       const users = response.data;
 
-      // חיפוש משתמש עם אימייל וסיסמה
       const user = users.find(
         (u: any) => u.email === values.email && u.password === values.password
       );
@@ -40,10 +38,8 @@ const Login: React.FC = () => {
         return;
       }
 
-      // שמירת המשתמש ב-localStorage
       localStorage.setItem("currentUser", JSON.stringify(user));
 
-      // ניתוב לדף הבית
       navigate("/home");
     } catch (error) {
       console.error(error);

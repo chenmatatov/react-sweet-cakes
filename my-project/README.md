@@ -1,73 +1,87 @@
-# React + TypeScript + Vite
+# 🍰 Sweet Cakes - אתר עוגות מתוקות
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+אתר מכירת עוגות מעוצבות ומתוקים בנוי ב-React עם TypeScript.
 
-Currently, two official plugins are available:
+## ✨ תכונות
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 🏠 דף בית עם תמונת רקע מרהיבה
+- 🧁 קטלוג מוצרים עם פילטר קטגוריות ופייג'ינג
+- 👁️ פרטי מוצר עם מערכת ביקורות ודירוגים
+- 👤 ניהול משתמשים - הרשמה והתחברות
+- 🔐 פאנל אדמין להוספה ומחיקת מוצרים
+- 📱 עיצוב רספונסיבי לכל המכשירים
+- 🗑️ מודלים יפים לאישור פעולות
 
-## React Compiler
+## 🛠️ טכנולוגיות
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+- **Frontend**: React 18 + TypeScript
+- **Styling**: SCSS
+- **Routing**: React Router
+- **HTTP Client**: Axios
+- **Forms**: Formik + Yup
+- **Backend**: JSON Server
+- **Build Tool**: Vite
 
-## Expanding the ESLint configuration
+## 🚀  הרצה
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+**הרצת השרת המקומי**
+```bash
+npm run json:server
+```
+השרת יעלה על: http://localhost:3000
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+**הרצת האפליקציה**
+```bash
+npm run dev
+```
+האפליקציה תעלה על: http://localhost:5173
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 📁 מבנה הפרויקט
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+src/
+├── components/          # כל הקומפוננטות
+│   ├── Home/           # דף הבית
+│   ├── Products/       # דף המוצרים
+│   ├── ProductDetails/ # פרטי מוצר
+│   ├── Login/          # התחברות
+│   ├── Register/       # הרשמה
+│   ├── Profile/        # פרופיל משתמש
+│   ├── NavBar/         # תפריט ניווט
+│   └── AddProduct/     # הוספת מוצר (אדמין)
+├── models/             # טיפוסי TypeScript
+└── assets/             # קבצים סטטיים
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 👥 סוגי משתמשים
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+**משתמש רגיל**
+- צפייה במוצרים
+- כתיבת ביקורות
+- עריכת פרופיל אישי
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+**אדמין**
+- כל הפעולות של משתמש רגיל
+- הוספת מוצרים חדשים
+- מחיקת מוצרים
+- מחיקת ביקורות
+
+## 📊 נתונים
+
+הפרויקט משתמש ב-JSON Server עם הקבצים:
+- `users` - משתמשים
+- `products` - מוצרים
+- `categories` - קטגוריות
+- `reviews` - ביקורות
+
+## 🌟 תכונות מיוחדות
+
+- מודלים מותאמים אישית במקום alert רגיל
+- אנימציות CSS מתקדמות
+- פייג'ינג חכם עם חזרה לתחילת העמוד
+- עיצוב מותאם לעברית עם RTL
+- ביקורות עם דירוגי כוכבים
+
+---
+
+**נוצר עם ❤️ ו-React**

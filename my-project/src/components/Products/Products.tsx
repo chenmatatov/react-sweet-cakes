@@ -3,7 +3,7 @@ import "./Products.scss";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import type { Product } from "../../models/product";
-import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
+import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 
 const PRODUCTS_PER_PAGE = 20;
 
@@ -16,6 +16,8 @@ const Products = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>("");
+  const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false);
+  const [productToDelete, setProductToDelete] = useState<Product | null>(null);
 
   const storedUser = localStorage.getItem("currentUser");
   const user = storedUser ? JSON.parse(storedUser) : null;
@@ -59,25 +61,33 @@ const Products = () => {
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+    }, 50);
   };
 
   const goToDetails = (p: Product) => {
     navigate(`/home/products/${p.id}`);
   };
   
-  const deleteProduct = async (p: Product) => {
-    const isConfirmed = window.confirm("האם את בטוחה שברצונך למחוק מוצר זה?");
-
-    if (!isConfirmed)
-      return;
+  const deleteProduct = async () => {
+    if (!productToDelete) return;
 
     try {
-      await axios.delete(`http://localhost:3000/products/${p.id}`);
+      await axios.delete(`http://localhost:3000/products/${productToDelete.id}`);
       fetchProducts();
+      setShowDeleteModal(false);
+      setProductToDelete(null);
     } catch (err) {
       console.log("שגיאה במחיקת מוצר:", err);
     }
+  };
+
+  const handleDeleteClick = (p: Product) => {
+    setProductToDelete(p);
+    setShowDeleteModal(true);
   };
 
   if (loading) return <LoadingSpinner />;
@@ -135,7 +145,7 @@ const Products = () => {
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
-                    deleteProduct(p);
+                    handleDeleteClick(p);
                   }}
                 >
                   מחק
@@ -157,6 +167,19 @@ const Products = () => {
               {i + 1}
             </button>
           ))}
+        </div>
+      )}
+
+      {showDeleteModal && (
+        <div className="modal-overlay">
+          <div className="modal">
+            <h3>אישור מחיקה</h3>
+            <p>האם את בטוחה שברצונך למחוק את המוצר "{productToDelete?.name}"?</p>
+            <div className="modal-buttons">
+              <button onClick={deleteProduct} className="confirm-btn">כן, מחק</button>
+              <button onClick={() => setShowDeleteModal(false)} className="cancel-btn">ביטול</button>
+            </div>
+          </div>
         </div>
       )}
     </div>

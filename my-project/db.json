@@ -90,6 +90,13 @@
       "email": "shira@example.com",
       "password": "S123##",
       "isAdmin": false
+    },
+    {
+      "id": "14",
+      "name": "חן",
+      "email": "c@gmail.com",
+      "password": "C1234!",
+      "isAdmin": false
     }
   ],
   "products": [
@@ -541,16 +548,6 @@
       "image": "/images/heart-cake.jpg",
       "description": "עוגת לב מעוצבת באהבה, מושלמת לחגיגה מרגשת.",
       "buyCount": 26
-    },
-    {
-      "id": "51",
-      "userId": "1",
-      "name": "עוגת ציור ",
-      "categoryId": 1,
-      "price": 100,
-      "image": "/images/defultCake.png",
-      "description": "עוגת ציור מהממת !",
-      "buyCount": 0
     }
   ],
   "categories": [
@@ -1279,6 +1276,13 @@
       "userId": "2",
       "rating": 2,
       "comment": "לא כל כך יפה "
+    },
+    {
+      "id": "102",
+      "productId": 2,
+      "userId": "2",
+      "rating": 5,
+      "comment": "עוגה מספר 40 מושלמת טעימה וחגיגית "
     }
   ]
 }

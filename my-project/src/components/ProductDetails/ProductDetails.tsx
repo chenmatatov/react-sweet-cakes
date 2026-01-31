@@ -16,6 +16,8 @@ const ProductDetails = () => {
   const [showForm, setShowForm] = useState(false);
   const [comment, setComment] = useState("");
   const [rating, setRating] = useState(5);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [reviewToDelete, setReviewToDelete] = useState<number | null>(null);
 
   const storedUser = localStorage.getItem("currentUser");
   const currentUser = storedUser ? JSON.parse(storedUser) : null;
@@ -44,17 +46,22 @@ const ProductDetails = () => {
     fetchData();
   }, [productId]);
 
-  const deleteReview = async (reviewId: number) => {
-    const isConfirmed = window.confirm("האם את בטוחה שברצונך למחוק תגובה זו?");
-
-    if (!isConfirmed) return;
+  const deleteReview = async () => {
+    if (!reviewToDelete) return;
 
     try {
-      await axios.delete(`http://localhost:3000/reviews/${reviewId}`);
-      setReviews((prev) => prev.filter((r) => r.id !== reviewId));
+      await axios.delete(`http://localhost:3000/reviews/${reviewToDelete}`);
+      setReviews((prev) => prev.filter((r) => r.id !== reviewToDelete));
+      setShowDeleteModal(false);
+      setReviewToDelete(null);
     } catch (err) {
       console.log("שגיאה במחיקת תגובה", err);
     }
+  };
+
+  const handleDeleteReview = (reviewId: number) => {
+    setReviewToDelete(reviewId);
+    setShowDeleteModal(true);
   };
   const addReview = async () => {
     const res = await axios.get("http://localhost:3000/reviews");
@@ -88,6 +95,7 @@ const ProductDetails = () => {
   if (!product) return <p>מוצר לא נמצא</p>;
 
   return (
+    <>
     <div className="product-details-container">
       {/* צד ימין - פרטי מוצר */}
       <div className="product-info">
@@ -118,7 +126,7 @@ const ProductDetails = () => {
             <p>{r.comment}</p>
 
             {(r.userId === currentUser?.id || isAdmin) && (
-              <button onClick={() => deleteReview(r.id)}>מחק</button>
+              <button onClick={() => handleDeleteReview(r.id)}>מחק</button>
             )}
           </div>
         ))}
@@ -160,6 +168,19 @@ const ProductDetails = () => {
       </div>
     </div>
 
+    {showDeleteModal && (
+      <div className="modal-overlay">
+        <div className="modal">
+          <h3>אישור מחיקה</h3>
+          <p>האם את בטוחה שברצונך למחוק את התגובה?</p>
+          <div className="modal-buttons">
+            <button onClick={deleteReview} className="confirm-btn">כן, מחק</button>
+            <button onClick={() => setShowDeleteModal(false)} className="cancel-btn">ביטול</button>
+          </div>
+        </div>
+      </div>
+    )}
+    </>
   );
 };
 

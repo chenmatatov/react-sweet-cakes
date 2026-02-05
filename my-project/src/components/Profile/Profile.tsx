@@ -82,7 +82,7 @@ const Profile = () => {
       <div className="profile-card">
         <div className="profile-description">
           <h2>פרופיל משתמש</h2>
-          <p>כאן תוכל לצפות ולערוך את הפרטים האישיים שלך.</p>
+          <p>צפיה ועריכת פרטים אישיים</p>
         </div>
         
         {!editing ? (
@@ -100,9 +100,9 @@ const Profile = () => {
             </div>
 
             <div className="buttons">
-              <button onClick={() => setEditing(true)}>ערוך פרטים</button>
+              <button onClick={() => setEditing(true)}>עריכת פרטים</button>
               <button className="logout" onClick={logout}>
-                התנתק
+                התנתקות
               </button>
             </div>
           </>

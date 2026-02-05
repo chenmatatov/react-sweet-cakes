@@ -57,7 +57,7 @@ const AddProduct = () => {
   return (
     <div className="addproduct-container">
       <h1>הוספת מוצר חדש</h1>
-      <p>טופס להוספת מוצר חדש לחנות.</p>
+      <p>טופס להוספת מוצר חדש לחנות</p>
 
       {success && <p className="success">{success}</p>}
       {error && <p className="error">{error}</p>}

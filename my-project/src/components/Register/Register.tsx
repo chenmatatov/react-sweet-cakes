@@ -41,18 +41,15 @@ const Register: React.FC = () => {
 
   const handleSubmit = async (values: RegisterValues) => {
     try {
-      // קריאה לשרת JSON
       const response = await axios.get("http://localhost:3000/users");
       const users = response.data;
 
-      // בדיקה אם האימייל כבר קיים
       const existingUser = users.find((u: any) => u.email === values.email);
       if (existingUser) {
         setRegisterError("אימייל כבר קיים במערכת");
         return;
       }
 
-      // יצירת משתמש חדש
       const newUser = {
         id: String(users.length + 1),
         name: values.name,
@@ -61,10 +58,8 @@ const Register: React.FC = () => {
         isAdmin: false,
       };
 
-      // שמירה לשרת JSON
       await axios.post("http://localhost:3000/users", newUser);
 
-      // הודעת הצלחה והפניה ללוגין
       setRegisterSuccess("הרשמה הצליחה! ניתן להתחבר עכשיו");
       setTimeout(() => navigate("/"), 2000);
     } catch (error) {

@@ -97,6 +97,13 @@
       "email": "c@gmail.com",
       "password": "C1234!",
       "isAdmin": false
+    },
+    {
+      "id": "15",
+      "name": "חן",
+      "email": "ch@gmail.com",
+      "password": "Ch1234!",
+      "isAdmin": false
     }
   ],
   "products": [
@@ -548,6 +555,86 @@
       "image": "/images/heart-cake.jpg",
       "description": "עוגת לב מעוצבת באהבה, מושלמת לחגיגה מרגשת.",
       "buyCount": 26
+    },
+    {
+      "id": "52",
+      "userId": "1",
+      "name": "פאי שוקולד",
+      "categoryId": 6,
+      "price": 130,
+      "image": "https://www.metukimsheli.com/wp-content/uploads/2022/02/%D7%98%D7%90%D7%A8%D7%98-%D7%A0%D7%95%D7%98%D7%9C%D7%94.jpg",
+      "description": "פאי שוקולד טעים ויפיפה",
+      "buyCount": 0
+    },
+    {
+      "id": "53",
+      "userId": "1",
+      "name": "עוגיות חמאה שקדים ",
+      "categoryId": 5,
+      "price": 80,
+      "image": "https://www.cookie-fairy.com/wp-content/uploads/2025/09/easy-butter-almond-cookies-1.jpg",
+      "description": "עוגיות חמאה ושקדים שנמסות בפה ",
+      "buyCount": 0
+    },
+    {
+      "id": "54",
+      "userId": "1",
+      "name": "עוגיות חמסה",
+      "categoryId": 5,
+      "price": 60,
+      "image": "https://www.cookie-fairy.com/wp-content/uploads/2025/09/hamsa-cookies-1.jpg",
+      "description": "עוגיות חמסה מהממות ",
+      "buyCount": 0
+    },
+    {
+      "id": "55",
+      "userId": "1",
+      "name": "פאי ריבת חלב ופקאן",
+      "categoryId": 6,
+      "price": 140,
+      "image": "https://www.cookie-fairy.com/wp-content/uploads/2025/07/mascarpone-dulce-de-leche-tart-5.jpg",
+      "description": "טארט מסקרפונה, ריבת חלב ופקאן (ללא אפייה)",
+      "buyCount": 0
+    },
+    {
+      "id": "56",
+      "userId": "1",
+      "name": "פאי תותים ",
+      "categoryId": 6,
+      "price": 100,
+      "image": "https://www.cookie-fairy.com/wp-content/uploads/2025/05/strawberry-galette-1.jpg",
+      "description": "גאלט תותים וקרם שקדים",
+      "buyCount": 0
+    },
+    {
+      "id": "57",
+      "userId": "1",
+      "name": "פאי אגסים קרם שקדים  ",
+      "categoryId": 6,
+      "price": 90,
+      "image": "https://www.cookie-fairy.com/wp-content/uploads/2024/06/pear-almond-tart-1.jpg",
+      "description": "טארט אגסים קרם שקדים  ושוקולד לבן",
+      "buyCount": 0
+    },
+    {
+      "id": "58",
+      "userId": "1",
+      "name": "עוגיות בראוניז",
+      "categoryId": 5,
+      "price": 50,
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRz-czNl7Z9qiZA-P9uvLqRWCeZ11dnwL3XCREe8sxSGCQEmy4jsBWWKC4&s",
+      "description": "עוגיות בראוניז מטריפות ",
+      "buyCount": 0
+    },
+    {
+      "id": "59",
+      "userId": "1",
+      "name": "עוגיות אלפחורס",
+      "categoryId": 5,
+      "price": 40,
+      "image": "https://heninthekitchen.com/wp-content/uploads/2020/03/IMG_4312small.jpg",
+      "description": "עוגיות אלפחורס מושלמות נמסות בפה",
+      "buyCount": 0
     }
   ],
   "categories": [
@@ -1258,21 +1345,21 @@
     },
     {
       "id": "99",
-      "productId": 50,
+      "productId": "50",
       "userId": "2",
       "rating": 5,
       "comment": "עוגת לב מהממת יפה ומרגשת "
     },
     {
       "id": "100",
-      "productId": 50,
+      "productId": "50",
       "userId": "2",
       "rating": 5,
       "comment": "עוגת לב מהממת !"
     },
     {
       "id": "101",
-      "productId": 52,
+      "productId": "52",
       "userId": "2",
       "rating": 2,
       "comment": "לא כל כך יפה "
@@ -1283,6 +1370,27 @@
       "userId": "2",
       "rating": 5,
       "comment": "עוגה מספר 40 מושלמת טעימה וחגיגית "
+    },
+    {
+      "id": "104",
+      "productId": 52,
+      "userId": "8",
+      "rating": 4,
+      "comment": "מאוד טעים אבל מידי מתוק "
+    },
+    {
+      "id": "105",
+      "productId": 58,
+      "userId": "15",
+      "rating": 5,
+      "comment": "עוגיות טעימות בטירוף"
+    },
+    {
+      "id": "106",
+      "productId": 59,
+      "userId": "15",
+      "rating": 5,
+      "comment": "עוגיות מושלמות נהנתי מכל ביס"
     }
   ]
 }

@@ -27,30 +27,30 @@ const Products = () => {
     axios
       .get("http://localhost:3000/categories")
       .then((res) => setCategories(res.data))
-      .catch((err) => console.log("Error fetching categories:", err));
+      .catch((err) => console.log("שגיאה בטעינת קטגוריות", err));
   }, []);
 
-  const fetchProducts = async () => {
-    setLoading(true);
-    setCurrentPage(1);
-
-    const url =
-      selectedCategoryId === 0
-        ? "http://localhost:3000/products"
-        : `http://localhost:3000/products?categoryId=${selectedCategoryId}`;
-
-    try {
-      const res = await axios.get(url);
-      setProducts(res.data);
-    } catch (err) {
-      console.log("Error fetching products:", err);
-      setError("שגיאה בטעינת המוצרים");
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
+    const fetchProducts = async () => {
+      setLoading(true);
+      setCurrentPage(1);
+
+      const url =
+        selectedCategoryId === 0
+          ? "http://localhost:3000/products"
+          : `http://localhost:3000/products?categoryId=${selectedCategoryId}`;
+
+      try {
+        const res = await axios.get(url);
+        setProducts(res.data);
+      } catch (err) {
+        console.log("שגיאה בטעינת מוצרים", err);
+        setError("שגיאה בטעינת המוצרים");
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchProducts();
   }, [selectedCategoryId]);
 
@@ -72,12 +72,25 @@ const Products = () => {
     navigate(`/home/products/${p.id}`);
   };
   
+  const refetchProducts = async () => {
+    setLoading(true);
+
+    try {
+      const res = await axios.get("http://localhost:3000/products");
+      setProducts(res.data);
+    } catch (err) {
+      console.log("שגיאה בטעינת מוצרים", err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const deleteProduct = async () => {
     if (!productToDelete) return;
 
     try {
       await axios.delete(`http://localhost:3000/products/${productToDelete.id}`);
-      fetchProducts();
+      refetchProducts();
       setShowDeleteModal(false);
       setProductToDelete(null);
     } catch (err) {

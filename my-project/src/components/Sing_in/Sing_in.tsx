@@ -3,22 +3,22 @@ import { useNavigate, Link } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
-import "./Register.scss";
+import "./Sing_in.scss";
 
-interface RegisterValues {
+interface Sing_inValues {
   name: string;
   email: string;
   password: string;
   confirmPassword: string;
 }
 
-const Register: React.FC = () => {
+const Sing_in: React.FC = () => {
   const navigate = useNavigate();
-  const [registerError, setRegisterError] = useState("");
-  const [registerSuccess, setRegisterSuccess] = useState("");
+  const [sing_inError, setSing_inError] = useState("");
+  const [sing_inSuccess, setSing_inSuccess] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
-  const initialValues: RegisterValues = {
+  const initialValues: Sing_inValues = {
     name: "",
     email: "",
     password: "",
@@ -39,19 +39,21 @@ const Register: React.FC = () => {
       .required("שדה חובה"),
   });
 
-  const handleSubmit = async (values: RegisterValues) => {
+  const handleSubmit = async (values: Sing_inValues) => {
     try {
       const response = await axios.get("http://localhost:3000/users");
       const users = response.data;
 
       const existingUser = users.find((u: any) => u.email === values.email);
       if (existingUser) {
-        setRegisterError("אימייל כבר קיים במערכת");
+        setSing_inError("אימייל כבר קיים במערכת");
         return;
       }
 
+      const maxId = users.length > 0 ? Math.max(...users.map((u: any) => Number(u.id))) : 0;
+
       const newUser = {
-        id: String(users.length + 1),
+        id: String(maxId + 1),
         name: values.name,
         email: values.email,
         password: values.password,
@@ -60,28 +62,28 @@ const Register: React.FC = () => {
 
       await axios.post("http://localhost:3000/users", newUser);
 
-      setRegisterSuccess("הרשמה הצליחה! ניתן להתחבר עכשיו");
+      setSing_inSuccess("הרשמה הצליחה! ניתן להתחבר עכשיו");
       setTimeout(() => navigate("/"), 2000);
     } catch (error) {
       console.error(error);
-      setRegisterError("שגיאה בשרת, נסי שוב מאוחר יותר");
+      setSing_inError("שגיאה בשרת, נסי שוב מאוחר יותר");
     }
   };
 
   return (
-    <div className="register-page">
-      <div className="register-card">
+    <div className="signin-page">
+      <div className="signin-card">
         <h1>הרשמה לאתר העוגות שלנו</h1>
 
-        {registerError && <div className="error register-error">{registerError}</div>}
-        {registerSuccess && <div className="success">{registerSuccess}</div>}
+        {sing_inError && <div className="error signin-error">{sing_inError}</div>}
+        {sing_inSuccess && <div className="success">{sing_inSuccess}</div>}
 
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
           onSubmit={handleSubmit}
         >
-          <Form className="register-form">
+          <Form className="signin-form">
             <label htmlFor="name">שם מלא</label>
             <Field type="text" id="name" name="name" placeholder="שם מלא" />
             <ErrorMessage name="name" component="div" className="error" />
@@ -119,4 +121,4 @@ const Register: React.FC = () => {
   );
 };
 
-export default Register;
+export default Sing_in;

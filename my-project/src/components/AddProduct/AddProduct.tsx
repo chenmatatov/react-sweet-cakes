@@ -7,6 +7,7 @@ const AddProduct = () => {
   const [price, setPrice] = useState<number>(0);
   const [category, setCategory] = useState<number>(1);
   const [description, setDescription] = useState("");
+  const [image, setImage] = useState("");
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
   const storedUser = localStorage.getItem("currentUser");
@@ -14,21 +15,23 @@ const AddProduct = () => {
 
   const addProduct = async (e: React.FormEvent) => {
     e.preventDefault();
-    const res = await axios.get("http://localhost:3000/products");
-    const products = res.data;
     if (!currentUser) {
       setError("משתמש לא מחובר");
       return;
     }
 
     try {
+      const res = await axios.get("http://localhost:3000/products");
+      const products = res.data;
+      const maxId = products.length > 0 ? Math.max(...products.map((p: any) => Number(p.id))) : 0;
+
       const newProduct = {
-        id: String(products.length + 1),
+        id: String(maxId + 1),
         userId: String(currentUser.id),
         name,
         categoryId: category,
         price,
-        image: "/images/defultCake.png",
+        image: image || "/images/defultCake.png",
         description,
         buyCount: 0
       };
@@ -45,6 +48,7 @@ const AddProduct = () => {
       setPrice(0);
       setCategory(1);
       setDescription("");
+      setImage("");
 
     } catch (err) {
       console.log("שגיאה בהוספת מוצר", err);
@@ -76,6 +80,12 @@ const AddProduct = () => {
           value={price}
           onChange={(e) => setPrice(Number(e.target.value))}
           required
+        />
+        <input
+          type="url"
+          placeholder="קישור לתמונה (URL)"
+          value={image}
+          onChange={(e) => setImage(e.target.value)}
         />
         <textarea
           placeholder="תיאור המוצר"

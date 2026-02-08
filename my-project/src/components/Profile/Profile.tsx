@@ -27,8 +27,6 @@ const Profile = () => {
 
     const fetchUser = async () => {
       try {
-        console.log("currentUser from localStorage:", currentUser);
-        
         const res = await axios.get(`http://localhost:3000/users/${Number(currentUser.id)}`);
 
         setUser(res.data);
@@ -42,7 +40,7 @@ const Profile = () => {
     };
 
     fetchUser();
-  }, []);
+  }, [currentUser, navigate]);
 
   const saveChanges = async () => {
     if (!user) return;
@@ -67,6 +65,13 @@ const Profile = () => {
     } catch (err) {
       console.log("שגיאה בעדכון משתמש", err);
     }
+  };
+
+  const cancelEdit = () => {
+    setEditing(false);
+    setPassword("");
+    setName(user?.name || "");
+    setEmail(user?.email || "");
   };
 
   const logout = () => {
@@ -136,10 +141,7 @@ const Profile = () => {
               <button onClick={saveChanges}>שמור</button>
               <button
                 className="cancel"
-                onClick={() => {
-                  setEditing(false);
-                  setPassword("");
-                }}
+                onClick={cancelEdit}
               >
                 ביטול
               </button>

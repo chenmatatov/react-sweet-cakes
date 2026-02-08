@@ -64,25 +64,27 @@ const ProductDetails = () => {
     setShowDeleteModal(true);
   };
   const addReview = async () => {
-    const res = await axios.get("http://localhost:3000/reviews");
-    const r = res.data;
     if (!comment.trim()) return;
 
     try {
+      const res = await axios.get("http://localhost:3000/reviews");
+      const allReviews = res.data;
+      const maxId = allReviews.length > 0 ? Math.max(...allReviews.map((r: any) => Number(r.id))) : 0;
+
       const newReview = {
-        id: String(r.length + 2),
+        id: String(maxId + 1),
         productId,
         userId: currentUser.id,
         rating,
         comment,
       };
 
-      const res = await axios.post(
+      const response = await axios.post(
         "http://localhost:3000/reviews",
         newReview
       );
 
-      setReviews((prev) => [...prev, res.data]);
+      setReviews((prev) => [...prev, response.data]);
       setComment("");
       setRating(5);
       setShowForm(false);

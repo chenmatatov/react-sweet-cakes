@@ -91,7 +91,7 @@ const Login: React.FC = () => {
         </Formik>
 
         <p className="register-link">
-          אין לך חשבון? <Link to="/register">הרשם כאן</Link>
+          אין לך חשבון? <Link to="/signin">הרשם כאן</Link>
         </p>
       </div>
     </div>

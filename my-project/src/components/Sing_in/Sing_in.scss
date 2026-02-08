@@ -1,4 +1,4 @@
-.register-page {
+.signin-page {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -8,7 +8,7 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.register-card {
+.signin-card {
   background-color: #fff0f5;
   padding: 60px 50px;
   border-radius: 30px;
@@ -28,7 +28,7 @@
     font-size: 2rem;
   }
 
-  .register-error {
+  .signin-error {
     background: #ffd6e0;
     padding: 10px;
     border-radius: 12px;
@@ -46,7 +46,7 @@
     font-weight: bold;
   }
 
-  .register-form {
+  .signin-form {
     display: flex;
     flex-direction: column;
     gap: 18px;
@@ -128,7 +128,7 @@
 }
 
 @media (max-width: 500px) {
-  .register-card {
+  .signin-card {
     padding: 40px 30px;
   }
 }

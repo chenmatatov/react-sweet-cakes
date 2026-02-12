@@ -635,6 +635,36 @@
       "image": "https://heninthekitchen.com/wp-content/uploads/2020/03/IMG_4312small.jpg",
       "description": "עוגיות אלפחורס מושלמות נמסות בפה",
       "buyCount": 0
+    },
+    {
+      "id": "60",
+      "userId": "1",
+      "name": "קרמל קונפלקס ",
+      "categoryId": 5,
+      "price": 100,
+      "image": "https://adikosh.co.il/wp-content/uploads/2021/04/4A5DE14F-B083-4D04-A923-A0DDC534848B-2.jpg",
+      "description": "קרמל קונפלקס מתוק וטעים לא תרצו להפסיק לאכול ",
+      "buyCount": 0
+    },
+    {
+      "id": "61",
+      "userId": "1",
+      "name": "ופל בלגי ",
+      "categoryId": 4,
+      "price": 50,
+      "image": "https://img.mako.co.il/2018/02/08/belgwaffle_i.jpg",
+      "description": "ופל בלגי טעים ומושקע",
+      "buyCount": 0
+    },
+    {
+      "id": "62",
+      "userId": "1",
+      "name": "עוגת גבינה",
+      "categoryId": 1,
+      "price": 100,
+      "image": "https://img.mako.co.il/2016/05/30/baeks_cheesecake1_i.jpg",
+      "description": "עוגת גבינה יפה גבוהה וטעימה",
+      "buyCount": 0
     }
   ],
   "categories": [
@@ -1391,6 +1421,13 @@
       "userId": "15",
       "rating": 5,
       "comment": "עוגיות מושלמות נהנתי מכל ביס"
+    },
+    {
+      "id": "107",
+      "productId": 2,
+      "userId": "2",
+      "rating": 5,
+      "comment": "עוגה מושלמת "
     }
   ]
 }

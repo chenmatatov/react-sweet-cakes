@@ -1,4 +1,4 @@
-.signin-page {
+.singin-page {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -8,7 +8,7 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.signin-card {
+.singin-card {
   background-color: #fff0f5;
   padding: 60px 50px;
   border-radius: 30px;
@@ -28,7 +28,7 @@
     font-size: 2rem;
   }
 
-  .signin-error {
+  .singin-error {
     background: #ffd6e0;
     padding: 10px;
     border-radius: 12px;
@@ -46,7 +46,7 @@
     font-weight: bold;
   }
 
-  .signin-form {
+  .singin-form {
     display: flex;
     flex-direction: column;
     gap: 18px;
@@ -128,7 +128,7 @@
 }
 
 @media (max-width: 500px) {
-  .signin-card {
+  .singin-card {
     padding: 40px 30px;
   }
 }

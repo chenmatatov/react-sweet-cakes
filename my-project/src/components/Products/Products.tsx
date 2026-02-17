@@ -14,7 +14,6 @@ const Products = () => {
   const [categories, setCategories] = useState<{ id: number; name: string }[]>([]);
   const [selectedCategoryId, setSelectedCategoryId] = useState<number>(0);
   const [currentPage, setCurrentPage] = useState<number>(1);
-
   const [totalItems, setTotalItems] = useState<number>(0);
 
   const [loading, setLoading] = useState<boolean>(true);

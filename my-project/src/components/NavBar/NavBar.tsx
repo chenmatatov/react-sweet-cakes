@@ -20,6 +20,7 @@ const NavBar = () => {
               הוספת מוצר
             </Link>
           )}
+          <span className="user-greeting">שלום, {user?.name}</span>
         </nav>
       </header>
 

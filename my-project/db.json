@@ -104,6 +104,13 @@
       "email": "ch@gmail.com",
       "password": "Ch1234!",
       "isAdmin": false
+    },
+    {
+      "id": "16",
+      "name": "שרה כהן",
+      "email": "shara@example.com",
+      "password": "S555!!",
+      "isAdmin": false
     }
   ],
   "products": [
@@ -167,7 +174,7 @@
       "price": 180,
       "image": "/images/tiered-chocolate-cake.jpg",
       "description": "עוגת קומות שוקולד עשירה עם שכבות קרם מפנקות, לאוהבי שוקולד אמיתיים.",
-      "buyCount": 18
+      "buyCount": 19
     },
     {
       "id": "8",
@@ -564,7 +571,7 @@
       "price": 130,
       "image": "https://www.metukimsheli.com/wp-content/uploads/2022/02/%D7%98%D7%90%D7%A8%D7%98-%D7%A0%D7%95%D7%98%D7%9C%D7%94.jpg",
       "description": "פאי שוקולד טעים ויפיפה",
-      "buyCount": 0
+      "buyCount": 6
     },
     {
       "id": "53",
@@ -574,7 +581,7 @@
       "price": 80,
       "image": "https://www.cookie-fairy.com/wp-content/uploads/2025/09/easy-butter-almond-cookies-1.jpg",
       "description": "עוגיות חמאה ושקדים שנמסות בפה ",
-      "buyCount": 0
+      "buyCount": 5
     },
     {
       "id": "54",
@@ -584,7 +591,7 @@
       "price": 60,
       "image": "https://www.cookie-fairy.com/wp-content/uploads/2025/09/hamsa-cookies-1.jpg",
       "description": "עוגיות חמסה מהממות ",
-      "buyCount": 0
+      "buyCount": 4
     },
     {
       "id": "55",
@@ -594,7 +601,7 @@
       "price": 140,
       "image": "https://www.cookie-fairy.com/wp-content/uploads/2025/07/mascarpone-dulce-de-leche-tart-5.jpg",
       "description": "טארט מסקרפונה, ריבת חלב ופקאן (ללא אפייה)",
-      "buyCount": 0
+      "buyCount": 3
     },
     {
       "id": "56",
@@ -604,7 +611,7 @@
       "price": 100,
       "image": "https://www.cookie-fairy.com/wp-content/uploads/2025/05/strawberry-galette-1.jpg",
       "description": "גאלט תותים וקרם שקדים",
-      "buyCount": 0
+      "buyCount": 2
     },
     {
       "id": "57",
@@ -614,7 +621,7 @@
       "price": 90,
       "image": "https://www.cookie-fairy.com/wp-content/uploads/2024/06/pear-almond-tart-1.jpg",
       "description": "טארט אגסים קרם שקדים  ושוקולד לבן",
-      "buyCount": 0
+      "buyCount": 6
     },
     {
       "id": "58",
@@ -624,7 +631,7 @@
       "price": 50,
       "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRz-czNl7Z9qiZA-P9uvLqRWCeZ11dnwL3XCREe8sxSGCQEmy4jsBWWKC4&s",
       "description": "עוגיות בראוניז מטריפות ",
-      "buyCount": 0
+      "buyCount": 5
     },
     {
       "id": "59",
@@ -634,7 +641,7 @@
       "price": 40,
       "image": "https://heninthekitchen.com/wp-content/uploads/2020/03/IMG_4312small.jpg",
       "description": "עוגיות אלפחורס מושלמות נמסות בפה",
-      "buyCount": 0
+      "buyCount": 4
     },
     {
       "id": "60",
@@ -644,7 +651,7 @@
       "price": 100,
       "image": "https://adikosh.co.il/wp-content/uploads/2021/04/4A5DE14F-B083-4D04-A923-A0DDC534848B-2.jpg",
       "description": "קרמל קונפלקס מתוק וטעים לא תרצו להפסיק לאכול ",
-      "buyCount": 0
+      "buyCount": 3
     },
     {
       "id": "61",
@@ -654,7 +661,7 @@
       "price": 50,
       "image": "https://img.mako.co.il/2018/02/08/belgwaffle_i.jpg",
       "description": "ופל בלגי טעים ומושקע",
-      "buyCount": 0
+      "buyCount": 8
     },
     {
       "id": "62",
@@ -664,7 +671,7 @@
       "price": 100,
       "image": "https://img.mako.co.il/2016/05/30/baeks_cheesecake1_i.jpg",
       "description": "עוגת גבינה יפה גבוהה וטעימה",
-      "buyCount": 0
+      "buyCount": 4
     }
   ],
   "categories": [
@@ -749,13 +756,6 @@
       "userId": "8",
       "rating": 5,
       "comment": "עוגת גבינה קלאסית, בדיוק מה שחיפשתי."
-    },
-    {
-      "id": "9",
-      "productId": "4",
-      "userId": "9",
-      "rating": 3,
-      "comment": "טעם טוב אבל המרקם היה קצת קשה מדי."
     },
     {
       "id": "10",
@@ -1428,6 +1428,90 @@
       "userId": "2",
       "rating": 5,
       "comment": "עוגה מושלמת "
+    },
+    {
+      "id": "108",
+      "productId": 3,
+      "userId": "2",
+      "rating": 5,
+      "comment": "מושלםם\nתודה רבה"
+    },
+    {
+      "id": "109",
+      "productId": 57,
+      "userId": "2",
+      "rating": 4,
+      "comment": "טעיםםםם"
+    },
+    {
+      "id": "110",
+      "productId": 57,
+      "userId": "2",
+      "rating": 5,
+      "comment": "מושקע בטירוףף"
+    },
+    {
+      "id": "111",
+      "productId": 61,
+      "userId": "2",
+      "rating": 5,
+      "comment": "מושלם שילוב נדיר"
+    },
+    {
+      "id": "112",
+      "productId": 54,
+      "userId": "2",
+      "rating": 5,
+      "comment": "חמסה חמסה"
+    },
+    {
+      "id": "113",
+      "productId": 60,
+      "userId": "2",
+      "rating": 4,
+      "comment": "שילוב מעולה"
+    },
+    {
+      "id": "114",
+      "productId": 55,
+      "userId": "2",
+      "rating": 5,
+      "comment": "נדיר👌"
+    },
+    {
+      "id": "115",
+      "productId": 62,
+      "userId": "2",
+      "rating": 4,
+      "comment": "טעים אבל המרקם מידי מוצק"
+    },
+    {
+      "id": "116",
+      "productId": 53,
+      "userId": "2",
+      "rating": 3,
+      "comment": "ממש טעים "
+    },
+    {
+      "id": "117",
+      "productId": 59,
+      "userId": "16",
+      "rating": 5,
+      "comment": "אמאלה מושלם 👌"
+    },
+    {
+      "id": "118",
+      "productId": 56,
+      "userId": "16",
+      "rating": 5,
+      "comment": "איזה טעים "
+    },
+    {
+      "id": "119",
+      "productId": 7,
+      "userId": "16",
+      "rating": 5,
+      "comment": "מהמם👌"
     }
   ]
 }

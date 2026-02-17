@@ -28,6 +28,7 @@
   display: flex;
   gap: 20px;
   flex-direction: row-reverse;
+  align-items: center;
 }
 
 .nav-link {
@@ -39,6 +40,14 @@
 
 .nav-link:hover {
   color: #ffefd5;
+}
+
+.user-greeting {
+  color: #fff;
+  font-weight: 600;
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 8px 15px;
+  border-radius: 20px;
 }
 
 /* תוכן הדף */

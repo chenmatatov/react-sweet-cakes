@@ -35,7 +35,7 @@ const Sing_in: React.FC = () => {
       .matches(/[!@#$%^&*]/, "חייב לכלול תו מיוחד")
       .required("שדה חובה"),
     confirmPassword: Yup.string()
-      .oneOf([Yup.ref("password"), null], "הסיסמאות לא תואמות")
+      .oneOf([Yup.ref("password"), undefined], "הסיסמאות לא תואמות")
       .required("שדה חובה"),
   });
 
@@ -71,11 +71,11 @@ const Sing_in: React.FC = () => {
   };
 
   return (
-    <div className="signin-page">
-      <div className="signin-card">
+    <div className="singin-page">
+      <div className="singin-card">
         <h1>הרשמה לאתר העוגות שלנו</h1>
 
-        {sing_inError && <div className="error signin-error">{sing_inError}</div>}
+        {sing_inError && <div className="error singin-error">{sing_inError}</div>}
         {sing_inSuccess && <div className="success">{sing_inSuccess}</div>}
 
         <Formik
@@ -83,7 +83,7 @@ const Sing_in: React.FC = () => {
           validationSchema={validationSchema}
           onSubmit={handleSubmit}
         >
-          <Form className="signin-form">
+          <Form className="singin-form">
             <label htmlFor="name">שם מלא</label>
             <Field type="text" id="name" name="name" placeholder="שם מלא" />
             <ErrorMessage name="name" component="div" className="error" />

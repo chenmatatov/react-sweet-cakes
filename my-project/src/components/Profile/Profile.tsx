@@ -89,7 +89,7 @@ const Profile = () => {
           <h2>פרופיל משתמש</h2>
           <p>צפיה ועריכת פרטים אישיים</p>
         </div>
-        
+
         {!editing ? (
           <>
             <div className="profile-row">
@@ -140,11 +140,7 @@ const Profile = () => {
             <div className="buttons">
               <button onClick={saveChanges}>שמור</button>
               <button
-                className="cancel"
-                onClick={cancelEdit}
-              >
-                ביטול
-              </button>
+                className="cancel" onClick={cancelEdit}>ביטול</button>
             </div>
           </>
         )}

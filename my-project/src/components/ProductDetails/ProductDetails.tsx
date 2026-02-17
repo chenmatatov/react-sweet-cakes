@@ -15,7 +15,7 @@ const ProductDetails = () => {
 
   const [showForm, setShowForm] = useState(false);
   const [comment, setComment] = useState("");
-  const [rating, setRating] = useState(5);
+  const [rating, setRating] = useState(0);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [reviewToDelete, setReviewToDelete] = useState<number | null>(null);
 
@@ -51,7 +51,11 @@ const ProductDetails = () => {
 
     try {
       await axios.delete(`http://localhost:3000/reviews/${reviewToDelete}`);
-      setReviews((prev) => prev.filter((r) => r.id !== reviewToDelete));
+      
+      const reviewsRes = await axios.get(
+        `http://localhost:3000/reviews?productId=${productId}`
+      );
+      setReviews(reviewsRes.data);
       setShowDeleteModal(false);
       setReviewToDelete(null);
     } catch (err) {
@@ -85,8 +89,18 @@ const ProductDetails = () => {
       );
 
       setReviews((prev) => [...prev, response.data]);
+      
+      if (product) {
+        const updatedProduct = {
+          ...product,
+          buyCount: product.buyCount + 1
+        };
+        await axios.put(`http://localhost:3000/products/${productId}`, updatedProduct);
+        setProduct(updatedProduct);
+      }
+      
       setComment("");
-      setRating(5);
+      setRating(0);
       setShowForm(false);
     } catch (err) {
       console.log("שגיאה בהוספת חוות דעת", err);

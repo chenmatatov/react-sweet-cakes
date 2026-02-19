@@ -1,21 +1,14 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import "./Login.scss";
-
-interface LoginValues {
-  email: string;
-  password: string;
-}
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
   const [loginError, setLoginError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-
-  const initialValues: LoginValues = { email: "", password: "" };
 
   const validationSchema = Yup.object({
     email: Yup.string().email("כתובת אימייל לא חוקית").required("שדה חובה"),
@@ -24,28 +17,31 @@ const Login: React.FC = () => {
       .required("שדה חובה"),
   });
 
-  const handleSubmit = async (values: LoginValues) => {
-    try {
-      const response = await axios.get("http://localhost:3000/users");
-      const users = response.data;
+  const formik = useFormik({
+    initialValues: { email: "", password: "" },
+    validationSchema,
+    onSubmit: async (values) => {
+      try {
+        const response = await axios.get("http://localhost:3000/users");
+        const users = response.data;
 
-      const user = users.find(
-        (u: any) => u.email === values.email && u.password === values.password
-      );
+        const user = users.find(
+          (u: any) => u.email === values.email && u.password === values.password
+        );
 
-      if (!user) {
-        setLoginError("אימייל או סיסמה לא נכונים");
-        return;
+        if (!user) {
+          setLoginError("אימייל או סיסמה לא נכונים");
+          return;
+        }
+
+        localStorage.setItem("currentUser", JSON.stringify(user));
+        navigate("/home");
+      } catch (error) {
+        console.error(error);
+        setLoginError("שגיאה בשרת, נסי שוב מאוחר יותר");
       }
-
-      localStorage.setItem("currentUser", JSON.stringify(user));
-
-      navigate("/home");
-    } catch (error) {
-      console.error(error);
-      setLoginError("שגיאה בשרת, נסי שוב מאוחר יותר");
-    }
-  };
+    },
+  });
 
   return (
     <div className="login-page">
@@ -53,42 +49,46 @@ const Login: React.FC = () => {
         <h1>כניסה לאתר העוגות שלנו</h1>
         {loginError && <div className="error login-error">{loginError}</div>}
 
-        <Formik
-          initialValues={initialValues}
-          validationSchema={validationSchema}
-          onSubmit={handleSubmit}
-        >
-          <Form className="login-form">
-            <label htmlFor="email">אימייל</label>
-            <Field
-              type="email"
-              id="email"
-              name="email"
-              placeholder="example@mail.com"
-            />
-            <ErrorMessage name="email" component="div" className="error" />
+        <form onSubmit={formik.handleSubmit} className="login-form">
+          <label htmlFor="email">אימייל</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="example@mail.com"
+            value={formik.values.email}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+          />
+          {formik.touched.email && formik.errors.email && (
+            <div className="error">{formik.errors.email}</div>
+          )}
 
-            <label htmlFor="password">סיסמה</label>
-            <Field
-              type={showPassword ? "text" : "password"}
-              id="password"
-              name="password"
-              placeholder="••••••"
+          <label htmlFor="password">סיסמה</label>
+          <input
+            type={showPassword ? "text" : "password"}
+            id="password"
+            name="password"
+            placeholder="••••••"
+            value={formik.values.password}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+          />
+          {formik.touched.password && formik.errors.password && (
+            <div className="error">{formik.errors.password}</div>
+          )}
+          
+          <label className="show-password">
+            <input
+              type="checkbox"
+              checked={showPassword}
+              onChange={(e) => setShowPassword(e.target.checked)}
             />
-            <ErrorMessage name="password" component="div" className="error" />
-            
-            <label className="show-password">
-              <input
-                type="checkbox"
-                checked={showPassword}
-                onChange={(e) => setShowPassword(e.target.checked)}
-              />
-              הצג סיסמה
-            </label>
+            הצג סיסמה
+          </label>
 
-            <button type="submit">התחבר</button>
-          </Form>
-        </Formik>
+          <button type="submit">התחבר</button>
+        </form>
 
         <p className="register-link">
           אין לך חשבון? <Link to="/signin">הרשם כאן</Link>

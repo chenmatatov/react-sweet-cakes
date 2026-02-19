@@ -111,6 +111,13 @@
       "email": "shara@example.com",
       "password": "S555!!",
       "isAdmin": false
+    },
+    {
+      "id": "17",
+      "name": "דוד",
+      "email": "d@gmail.com",
+      "password": "D999##",
+      "isAdmin": false
     }
   ],
   "products": [

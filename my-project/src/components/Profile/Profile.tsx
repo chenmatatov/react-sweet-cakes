@@ -30,8 +30,10 @@ const Profile = () => {
         const res = await axios.get(`http://localhost:3000/users/${Number(currentUser.id)}`);
 
         setUser(res.data);
-        setName(res.data.name);
-        setEmail(res.data.email);
+        if (!editing) {
+          setName(res.data.name);
+          setEmail(res.data.email);
+        }
       } catch (err) {
         console.log("שגיאה בטעינת משתמש", err);
       } finally {
@@ -40,7 +42,7 @@ const Profile = () => {
     };
 
     fetchUser();
-  }, [currentUser, navigate]);
+  }, [currentUser, navigate, editing]);
 
   const saveChanges = async () => {
     if (!user) return;
@@ -105,7 +107,12 @@ const Profile = () => {
             </div>
 
             <div className="buttons">
-              <button onClick={() => setEditing(true)}>עריכת פרטים</button>
+              <button onClick={() => {
+                setName(user.name);
+                setEmail(user.email);
+                setPassword("");
+                setEditing(true);
+              }}>עריכת פרטים</button>
               <button className="logout" onClick={logout}>
                 התנתקות
               </button>

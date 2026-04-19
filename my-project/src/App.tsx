@@ -9,6 +9,8 @@ import ProductDetails from "./components/ProductDetails/ProductDetails";
 import Profile from "./components/Profile/Profile";
 import AddProduct from "./components/AddProduct/AddProduct";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import Cart from "./components/Cart/Cart";
+import OrderSuccess from "./components/OrderSuccess/OrderSuccess";
 
 
 function App() {
@@ -44,6 +46,16 @@ function App() {
         <Route path="addproduct" element={
           <ProtectedRoute requireAdmin={true}>
             <AddProduct />
+          </ProtectedRoute>
+        } />
+        <Route path="cart" element={
+          <ProtectedRoute>
+            <Cart />
+          </ProtectedRoute>
+        } />
+        <Route path="order-success" element={
+          <ProtectedRoute>
+            <OrderSuccess />
           </ProtectedRoute>
         } />
       </Route>

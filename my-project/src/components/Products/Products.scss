@@ -12,8 +12,96 @@
 
   h1 {
     font-size: 32px;
-    color: #c94c4c;
+    color: #e91e63;
     margin-bottom: 20px;
+  }
+
+  .filters-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 25px;
+    width: 100%;
+    background: linear-gradient(135deg, #fff0f5, #ffe4f0);
+    padding: 20px 24px;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(217, 108, 163, 0.12);
+    border: 1px solid #f5c6e0;
+  }
+
+  .search-input, .sort-select, .price-input {
+    padding: 11px 16px;
+    border-radius: 25px;
+    border: 2px solid #e91e63;
+    font-size: 0.95rem;
+    outline: none;
+    color: #555;
+    background: #fff;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    font-family: inherit;
+
+    &::placeholder { color: #c4a0b8; }
+
+    &:focus {
+      border-color: #c2185b;
+      box-shadow: 0 0 0 3px rgba(217,108,163,0.15);
+    }
+  }
+
+  .search-input { min-width: 210px; }
+
+  .sort-select {
+    min-width: 180px;
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='%23d96ca3'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: left 12px center;
+    padding-left: 32px;
+  }
+
+  .price-filter {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: white;
+    padding: 6px 14px;
+    border-radius: 25px;
+    border: 2px solid #e91e63;
+
+    span {
+      color: #e91e63;
+      font-weight: bold;
+    }
+
+    .price-input {
+      width: 100px;
+      border: none;
+      box-shadow: none;
+      padding: 5px 8px;
+
+      &:focus { box-shadow: none; border: none; }
+    }
+  }
+
+  .reset-btn {
+    padding: 8px 16px;
+    background-color: #f5f5f5;
+    border: 2px solid #e91e63;
+    border-radius: 20px;
+    color: #e91e63;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9rem;
+    font-family: inherit;
+    transition: all 0.2s;
+
+    &:hover {
+      background-color: #e91e63;
+      color: white;
+    }
   }
 
   .subtitle {
@@ -121,31 +209,49 @@
         &:hover {
           background-color: #c2185b;
         }
+      }
 
-        &:first-of-type {
-          background: linear-gradient(45deg, #e91e63, #ff6b9d);
-          box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3);
-          font-weight: 700;
-          text-transform: uppercase;
-          letter-spacing: 1px;
-          animation: pulse 2s infinite;
-          
-          &:hover {
-            background: linear-gradient(45deg, #c2185b, #e91e63);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(233, 30, 99, 0.4);
-          }
+      .btn-view {
+        background: linear-gradient(45deg, #e91e63, #ff6b9d);
+        border: none;
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 12px rgba(233,30,99,0.35);
+        transition: transform 0.2s, box-shadow 0.2s;
+
+        img { width: 18px; height: 18px; filter: brightness(0) invert(1); }
+
+        &:hover {
+          transform: scale(1.12);
+          box-shadow: 0 6px 18px rgba(233,30,99,0.5);
+        }
+      }
+
+      .btn-delete {
+        background: #f5f5f5;
+        border: none;
+        width: 34px;
+        height: 34px;
+        border-radius: 8px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.2s;
+
+        img {
+          width: 17px;
+          height: 17px;
+          filter: invert(40%) sepia(0%) saturate(0%) brightness(60%);
         }
 
-        &:last-of-type {
-          background-color: #ccc;
-          color: #666;
-          font-size: 12px;
-          padding: 6px 10px;
-          
-          &:hover {
-            background-color: #bbb;
-          }
+        &:hover {
+          background: #ebebeb;
         }
       }
     }

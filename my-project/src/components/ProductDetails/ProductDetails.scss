@@ -20,13 +20,17 @@
   h1 {
     font-size: 28px;
     margin-bottom: 15px;
-    color: #c94c4c;
+    color:  #e91e63;
+  }
+
+  .buy-count strong {
+    color: #e91e63;
   }
 
   .price {
     font-size: 22px;
     font-weight: bold;
-    color: #b83280;
+    color:  #e91e63;
     margin-bottom: 10px;
   }
 
@@ -35,6 +39,74 @@
     line-height: 1.6;
     color: #555;
     margin-bottom: 20px;
+  }
+
+  .cart-controls {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .add-to-cart-btn {
+    padding: 12px 30px;
+    background: #e91e63;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: background 0.2s, transform 0.2s;
+
+    .cart-btn-icon {
+      width: 20px;
+      height: 20px;
+      filter: brightness(0) invert(1);
+    }
+
+    &:hover {
+      background: #c2185b;
+      transform: scale(1.05);
+    }
+  }
+
+  .quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: #fff0f5;
+    border-radius: 25px;
+    padding: 8px 20px;
+
+    button {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: none;
+      background:  #e91e63;
+      color: white;
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+
+      &:hover {
+        background: #c2185b;
+      }
+    }
+
+    span {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #333;
+      min-width: 25px;
+      text-align: center;
+    }
   }
 
   .product-image {
@@ -73,17 +145,26 @@
       position: absolute;
       top: 10px;
       left: 10px;
-      background-color: #ccc;
+      background: #f0f0f0;
       border: none;
-      color: #666;
-      padding: 4px 8px;
-      border-radius: 4px;
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
       cursor: pointer;
-      font-size: 11px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       opacity: 0.7;
-      
+      transition: background 0.2s, opacity 0.2s;
+
+      img {
+        width: 14px;
+        height: 14px;
+        filter: invert(30%) sepia(0%) saturate(0%) brightness(50%);
+      }
+
       &:hover {
-        background-color: #bbb;
+        background: #e0e0e0;
         opacity: 1;
       }
     }
@@ -91,7 +172,7 @@
 
   .add-review-btn {
     margin-top: 10px;
-    background-color: #b83280;
+    background-color:  #e91e63;
     color: white;
     border: none;
     padding: 10px 18px;
@@ -149,7 +230,7 @@
 }
 
 .form-actions button:first-child {
-  background-color: #b83280;
+  background-color:  #e91e63;
   color: white;
 }
 
@@ -205,11 +286,11 @@
       transition: all 0.3s;
 
       &.confirm-btn {
-        background: #f44336;
+        background:  #e91e63;
         color: white;
         
         &:hover {
-          background: #d32f2f;
+          background: #c2185b;
         }
       }
 

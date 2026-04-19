@@ -4,6 +4,9 @@ import "./ProductDetails.scss";
 import axios from "axios";
 import type { Product } from "../../models/product";
 import type { Review } from "../../models/review";
+import { useCart } from "../../context/CartContext";
+import deleteIcon from "../../assets/icons/delete.svg";
+import cartIcon from "../../assets/icons/cart.svg";
 
 const ProductDetails = () => {
   const { id } = useParams<{ id: string }>();
@@ -21,6 +24,23 @@ const ProductDetails = () => {
 
   const storedUser = localStorage.getItem("currentUser");
   const currentUser = storedUser ? JSON.parse(storedUser) : null;
+  const { addToCart, items, updateQuantity } = useCart();
+  const cartItem = items.find((i) => i.product.id === productId);
+
+  const handleAddToCart = async () => {
+    if (!product) return;
+    try {
+      const updatedBuyCount = (product.buyCount || 0) + 1;
+      await axios.patch(`http://localhost:3000/products/${productId}`, {
+        buyCount: updatedBuyCount,
+      });
+      setProduct({ ...product, buyCount: updatedBuyCount });
+    } catch (err) {
+      console.log("שגיאה בעדכון buyCount", err);
+    }
+    addToCart(product);
+  };
+
   const isAdmin = currentUser?.isAdmin;
 
   useEffect(() => {
@@ -90,15 +110,6 @@ const ProductDetails = () => {
 
       setReviews((prev) => [...prev, response.data]);
       
-      if (product) {
-        const updatedProduct = {
-          ...product,
-          buyCount: product.buyCount + 1
-        };
-        await axios.put(`http://localhost:3000/products/${productId}`, updatedProduct);
-        setProduct(updatedProduct);
-      }
-      
       setComment("");
       setRating(0);
       setShowForm(false);
@@ -127,6 +138,21 @@ const ProductDetails = () => {
           מוצר זה נרכש <strong>{product.buyCount}</strong> פעמים
         </p>
         <p className="description">תיאור המוצר: {product.description}</p>
+
+        <div className="cart-controls">
+          {!cartItem ? (
+            <button className="add-to-cart-btn" onClick={handleAddToCart}>
+              הוסף לסל
+              <img src={cartIcon} alt="סל" className="cart-btn-icon" />
+            </button>
+          ) : (
+            <div className="quantity-controls">
+              <button onClick={() => updateQuantity(product.id, cartItem.quantity - 1)}>−</button>
+              <span>{cartItem.quantity}</span>
+              <button onClick={() => updateQuantity(product.id, cartItem.quantity + 1)}>+</button>
+            </div>
+          )}
+        </div>
       </div>
 
       <div className="reviews-container">
@@ -140,7 +166,9 @@ const ProductDetails = () => {
             <p>{r.comment}</p>
 
             {(r.userId === currentUser?.id || isAdmin) && (
-              <button onClick={() => handleDeleteReview(r.id)}>מחק</button>
+              <button className="delete-review-btn" onClick={() => handleDeleteReview(r.id)} title="מחק תגובה">
+                <img src={deleteIcon} alt="מחק" />
+              </button>
             )}
           </div>
         ))}

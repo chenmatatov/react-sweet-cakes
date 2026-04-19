@@ -135,7 +135,7 @@
       "price": 195,
       "image": "/images/Numbercake18.jpg",
       "description": "עוגת מספר 18 מעוצבת בקפידה עם קרם עשיר וקישוטים אלגנטיים, מושלמת לחגיגת יום הולדת מרגשת.",
-      "buyCount": 12
+      "buyCount": 14
     },
     {
       "id": "2",
@@ -143,7 +143,8 @@
       "categoryId": 3,
       "price": 220,
       "image": "/images/Numbercake40.jpg",
-      "description": "עוגת מספר 40 חגיגית ומרשימה, משלבת מראה יוקרתי עם טעמים אהובים."
+      "description": "עוגת מספר 40 חגיגית ומרשימה, משלבת מראה יוקרתי עם טעמים אהובים.",
+      "buyCount": 5
     },
     {
       "id": "3",
@@ -152,7 +153,7 @@
       "price": 30,
       "image": "/images/macarons.jpg",
       "description": "מקרונים צבעוניים ועדינים במילוי קרם עשיר, נמסים בפה ומוסיפים צבע ומתיקות לכל אירוע.",
-      "buyCount": 20
+      "buyCount": 29
     },
     {
       "id": "4",
@@ -161,7 +162,7 @@
       "price": 95,
       "image": "/images/cheesecake.jpg",
       "description": "עוגת גבינה אפויה במרקם קרמי וחלק, עם טעם קלאסי ואהוב שמתאים לכל רגע.",
-      "buyCount": 14
+      "buyCount": 15
     },
     {
       "id": "5",
@@ -188,7 +189,7 @@
       "price": 180,
       "image": "/images/tiered-chocolate-cake.jpg",
       "description": "עוגת קומות שוקולד עשירה עם שכבות קרם מפנקות, לאוהבי שוקולד אמיתיים.",
-      "buyCount": 19
+      "buyCount": 21
     },
     {
       "id": "8",
@@ -233,7 +234,7 @@
       "price": 210,
       "image": "/images/tiered-red-velvet-cake.jpg",
       "description": "עוגת רד וולווט עשירה בצבע אדום עמוק עם קרם גבינה עדין.",
-      "buyCount": 20
+      "buyCount": 21
     },
     {
       "id": "13",
@@ -296,7 +297,7 @@
       "price": 170,
       "image": "/images/Numbercake10.jpg",
       "description": "עוגת מספר 10 מתוקה וחגיגית, מתאימה במיוחד לילדים.",
-      "buyCount": 11
+      "buyCount": 12
     },
     {
       "id": "21",
@@ -305,7 +306,7 @@
       "price": 26,
       "image": "/images/choc-chip-cookie.jpg",
       "description": "עוגיית שוקולד צ'יפס פריכה מבחוץ ורכה מבפנים, קלאסיקה אהובה.",
-      "buyCount": 20
+      "buyCount": 21
     },
     {
       "id": "22",
@@ -706,7 +707,7 @@
       "price": 40,
       "image": "https://www.cookie-fairy.com/wp-content/uploads/2017/04/meringuekisses1.jpg",
       "description": "נשיקות מושלמות ",
-      "buyCount": 0
+      "buyCount": 2
     }
   ],
   "categories": [
@@ -1458,13 +1459,6 @@
       "comment": "עוגיות מושלמות נהנתי מכל ביס"
     },
     {
-      "id": "107",
-      "productId": 2,
-      "userId": "2",
-      "rating": 5,
-      "comment": "עוגה מושלמת "
-    },
-    {
       "id": "108",
       "productId": 3,
       "userId": "2",
@@ -1554,6 +1548,13 @@
       "userId": "18",
       "rating": 1,
       "comment": "אמאלה מושלם 👌"
+    },
+    {
+      "id": "122",
+      "productId": 3,
+      "userId": "2",
+      "rating": 4,
+      "comment": "WOW!!"
     }
   ]
 }

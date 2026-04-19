@@ -3,6 +3,7 @@ import "./Profile.scss";
 import axios from "axios";
 import type { User } from "../../models/user";
 import { useNavigate } from "react-router-dom";
+import { useCart } from "../../context/CartContext";
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -76,8 +77,11 @@ const Profile = () => {
     setEmail(user?.email || "");
   };
 
+  const { clearCart } = useCart();
+
   const logout = () => {
     localStorage.removeItem("currentUser");
+    clearCart();
     navigate("/");
   };
 

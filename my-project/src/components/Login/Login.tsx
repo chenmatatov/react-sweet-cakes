@@ -4,11 +4,13 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import "./Login.scss";
+import { useCart } from "../../context/CartContext";
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
   const [loginError, setLoginError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const { loadCart } = useCart();
 
   const validationSchema = Yup.object({
     email: Yup.string().email("כתובת אימייל לא חוקית").required("שדה חובה"),
@@ -35,6 +37,7 @@ const Login: React.FC = () => {
         }
 
         localStorage.setItem("currentUser", JSON.stringify(user));
+        loadCart(user.id);
         navigate("/home");
       } catch (error) {
         console.error(error);

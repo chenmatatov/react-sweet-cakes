@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./Profile.scss";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../../context/CartContext";

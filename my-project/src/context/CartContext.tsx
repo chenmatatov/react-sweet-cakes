@@ -24,7 +24,7 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
   const getCartKey = () => {
     const storedUser = localStorage.getItem("currentUser");
     const user = storedUser ? JSON.parse(storedUser) : null;
-    return user ? `cart_${user.id}` : null;
+    return user ? `cart_${user._id || user.id}` : null;
   };
 
   const [items, setItems] = useState<CartItem[]>(() => {
@@ -41,27 +41,24 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
 
   const addToCart = (product: Product) => {
     setItems((prev) => {
-      const existing = prev.find((i) => i.product.id === product.id);
+      const existing = prev.find((i) => (i.product._id || i.product.id) === (product._id || product.id));
       if (existing) {
         return prev.map((i) =>
-          i.product.id === product.id ? { ...i, quantity: i.quantity + 1 } : i
+          (i.product._id || i.product.id) === (product._id || product.id) ? { ...i, quantity: i.quantity + 1 } : i
         );
       }
       return [...prev, { product, quantity: 1 }];
     });
   };
 
-  const removeFromCart = (productId: number) => {
-    setItems((prev) => prev.filter((i) => i.product.id !== productId));
+  const removeFromCart = (productId: any) => {
+    setItems((prev) => prev.filter((i) => (i.product._id || i.product.id) !== productId));
   };
 
-  const updateQuantity = (productId: number, quantity: number) => {
-    if (quantity <= 0) {
-      removeFromCart(productId);
-      return;
-    }
+  const updateQuantity = (productId: any, quantity: number) => {
+    if (quantity <= 0) { removeFromCart(productId); return; }
     setItems((prev) =>
-      prev.map((i) => (i.product.id === productId ? { ...i, quantity } : i))
+      prev.map((i) => ((i.product._id || i.product.id) === productId ? { ...i, quantity } : i))
     );
   };
 

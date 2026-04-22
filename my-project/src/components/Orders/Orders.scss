@@ -1,0 +1,128 @@
+.orders-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 30px 20px;
+  direction: rtl;
+
+  h1 {
+    color: #e91e63;
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+}
+
+.orders-loading {
+  text-align: center;
+  color: #e91e63;
+  font-size: 1.2rem;
+  margin-top: 50px;
+}
+
+.orders-empty {
+  text-align: center;
+  padding: 60px 20px;
+
+  span {
+    font-size: 4rem;
+    display: block;
+    margin-bottom: 15px;
+  }
+
+  p {
+    color: #888;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+  }
+
+  button {
+    padding: 12px 30px;
+    background: #e91e63;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+
+    &:hover { background: #c2185b; }
+  }
+}
+
+.orders-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.order-card {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  border-right: 4px solid #e91e63;
+}
+
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #f5c6e0;
+
+  .order-date {
+    color: #888;
+    font-size: 0.9rem;
+  }
+}
+
+.order-status {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: bold;
+
+  &.status-pending   { background: #fff3e0; color: #f57c00; }
+  &.status-confirmed { background: #e8f5e9; color: #388e3c; }
+  &.status-shipped   { background: #e3f2fd; color: #1976d2; }
+  &.status-delivered { background: #fce4ec; color: #e91e63; }
+}
+
+.order-items {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.order-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.95rem;
+
+  .item-name { flex: 1; color: #333; }
+  .item-qty  { color: #888; margin: 0 10px; }
+  .item-price { font-weight: bold; color: #e91e63; }
+}
+
+.order-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 12px;
+  border-top: 1px solid #f5c6e0;
+
+  .order-address {
+    color: #666;
+    font-size: 0.85rem;
+  }
+
+  .order-total {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #333;
+  }
+}

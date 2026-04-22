@@ -4,7 +4,7 @@ import type { Product } from "../models/product";
 interface FavoritesContextType {
   favorites: Product[];
   toggleFavorite: (product: Product) => void;
-  isFavorite: (productId: number) => boolean;
+  isFavorite: (productId: string | number) => boolean;
   loadFavorites: (userId: string) => void;
   clearFavorites: () => void;
 }
@@ -37,15 +37,18 @@ export const FavoritesProvider = ({ children }: { children: React.ReactNode }) =
 
   const clearFavorites = () => setFavorites([]);
 
+  const getId = (p: Product) => p._id || p.id;
+
   const toggleFavorite = (product: Product) => {
+    const pid = getId(product);
     setFavorites(prev =>
-      prev.find(p => p.id === product.id)
-        ? prev.filter(p => p.id !== product.id)
+      prev.find(p => getId(p) === pid)
+        ? prev.filter(p => getId(p) !== pid)
         : [...prev, product]
     );
   };
 
-  const isFavorite = (productId: number) => favorites.some(p => p.id === productId);
+  const isFavorite = (productId: string | number) => favorites.some(p => getId(p) === productId);
 
   return (
     <FavoritesContext.Provider value={{ favorites, toggleFavorite, isFavorite, loadFavorites, clearFavorites }}>

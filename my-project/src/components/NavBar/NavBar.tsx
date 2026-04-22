@@ -8,6 +8,7 @@ import homeIcon from "../../assets/icons/home.svg";
 import cakeIcon from "../../assets/icons/cake.svg";
 import addProductIcon from "../../assets/icons/add-product.svg";
 import cartIcon from "../../assets/icons/cart.svg";
+import ordersIcon from "../../assets/icons/orders.svg";
 import ChatBot from "../ChatBot/ChatBot";
 
 const NavBar = () => {
@@ -48,6 +49,9 @@ const NavBar = () => {
           <Link to="/home/favorites" className="nav-link favorites-link" title="המועדפים שלי">
             🤍
             {favorites.length > 0 && <span className="cart-badge">{favorites.length}</span>}
+          </Link>
+          <Link to="/home/orders" className="nav-link" title="ההזמנות שלי">
+            <img src={ordersIcon} className="nav-icon" alt="הזמנות" />
           </Link>
           <Link to="/home/cart" className="nav-link cart-link" title="הסל שלי">
             <img src={cartIcon} className="nav-icon" alt="סל" />

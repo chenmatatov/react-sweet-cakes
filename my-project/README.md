@@ -1,6 +1,6 @@
 # 🍰 Sweet Cakes - אתר עוגות מתוקות
 
-אתר מכירת עוגות מעוצבות ומתוקים בנוי ב-React עם TypeScript.
+אתר מכירת עוגות מעוצבות ומתוקים בנוי ב-React עם TypeScript ושרת Node.js עם MongoDB.
 
 ## ✨ תכונות
 
@@ -19,38 +19,58 @@
 - **Routing**: React Router
 - **HTTP Client**: Axios
 - **Forms**: Formik + Yup
-- **Backend**: JSON Server
+- **Backend**: Node.js + Express + TypeScript
+- **Database**: MongoDB + Mongoose
+- **Auth**: JWT + bcrypt
 - **Build Tool**: Vite
 
-## 🚀  הרצה
+## 🚀 התקנה והרצה
 
-**הרצת השרת המקומי**
+### דרישות מקדימות
+- Node.js מותקן
+- MongoDB מותקן ורץ על המחשב
+
+### טרמינל 1 - הרצת השרת
 ```bash
-npm run json:server
+cd SERVER
+npm install
+npm run dev
 ```
 השרת יעלה על: http://localhost:3000
 
-**הרצת האפליקציה**
+### טרמינל 2 - הרצת הקליינט
 ```bash
+cd my-project
+npm install
 npm run dev
 ```
 האפליקציה תעלה על: http://localhost:5173
 
+### הכנסת נתונים למסד הנתונים (פעם אחת בלבד - רק בהתקנה ראשונית)
+```bash
+cd SERVER
+npm run seed
+```
+זה יכניס למונגו: קטגוריות, משתמשים, מוצרים וביקורות.
+⚠️ אל תריצי שוב - זה ימחק את כל הנתונים הקיימים!
+
 ## 📁 מבנה הפרויקט
 
 ```
-src/
-├── components/          # כל הקומפוננטות
-│   ├── Home/           # דף הבית
-│   ├── Products/       # דף המוצרים
-│   ├── ProductDetails/ # פרטי מוצר
-│   ├── Login/          # התחברות
-│   ├── Register/       # הרשמה
-│   ├── Profile/        # פרופיל משתמש
-│   ├── NavBar/         # תפריט ניווט
-│   └── AddProduct/     # הוספת מוצר (אדמין)
-├── models/             # טיפוסי TypeScript
-└── assets/             # קבצים סטטיים
+react-sweet-cakes/
+├── my-project/          # קליינט React
+│   └── src/
+│       ├── components/  # כל הקומפוננטות
+│       ├── context/     # Cart ו-Favorites
+│       ├── models/      # טיפוסי TypeScript
+│       └── api.ts       # חיבור לשרת
+└── SERVER/              # שרת Node.js
+    └── src/
+        ├── config/      # חיבור למונגו
+        ├── models/      # מודלי Mongoose
+        ├── routes/      # API routes
+        ├── middleware/  # JWT auth
+        └── seed.ts      # הכנסת נתונים ראשונית
 ```
 
 ## 👥 סוגי משתמשים
@@ -66,13 +86,18 @@ src/
 - מחיקת מוצרים
 - מחיקת ביקורות
 
+### פרטי כניסה לאדמין
+- אימייל: `chen@example.com`
+- סיסמה: `Chen1234!`
+
 ## 📊 נתונים
 
-הפרויקט משתמש ב-JSON Server עם הקבצים:
+הפרויקט משתמש ב-MongoDB עם האוספים:
 - `users` - משתמשים
 - `products` - מוצרים
 - `categories` - קטגוריות
 - `reviews` - ביקורות
+- `orders` - הזמנות
 
 ## 🌟 תכונות מיוחדות
 

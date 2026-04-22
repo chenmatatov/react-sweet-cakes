@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
 import "./Checkout.scss";
+import api from "../../api";
 
 const SHIPPING = 29;
 
@@ -90,7 +91,21 @@ const Checkout = () => {
     setStep(2);
   };
 
-  const handleOrder = () => {
+  const handleOrder = async () => {
+    try {
+      await api.post("/orders", {
+        items: items.map(({ product, quantity }) => ({
+          productId: product._id || product.id,
+          name: product.name,
+          price: product.price,
+          quantity,
+        })),
+        shipping,
+        totalPrice: totalPrice + SHIPPING,
+      });
+    } catch (err) {
+      console.log("שגיאה בשמירת הזמנה", err);
+    }
     clearCart();
     navigate("/home/order-success");
   };
@@ -100,7 +115,7 @@ const Checkout = () => {
       <h3>סיכום</h3>
       <div className="summary-items">
         {items.map(({ product, quantity }) => (
-          <div key={product.id} className="summary-item">
+          <div key={product._id || product.id} className="summary-item">
             <img src={product.image} alt={product.name} />
             <span>{product.name} x{quantity}</span>
             <span>₪{product.price * quantity}</span>

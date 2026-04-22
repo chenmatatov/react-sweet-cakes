@@ -13,6 +13,7 @@ import Cart from "./components/Cart/Cart";
 import Checkout from "./components/Checkout/Checkout";
 import OrderSuccess from "./components/OrderSuccess/OrderSuccess";
 import Favorites from "./components/Favorites/Favorites";
+import Orders from "./components/Orders/Orders";
 
 
 function App() {
@@ -68,6 +69,11 @@ function App() {
         <Route path="checkout" element={
           <ProtectedRoute>
             <Checkout />
+          </ProtectedRoute>
+        } />
+        <Route path="orders" element={
+          <ProtectedRoute>
+            <Orders />
           </ProtectedRoute>
         } />
       </Route>

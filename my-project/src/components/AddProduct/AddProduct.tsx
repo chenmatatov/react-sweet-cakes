@@ -1,60 +1,33 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./AddProduct.scss";
-import axios from "axios";
-import API_URL from "../../api";
+import api from "../../api";
 
 const AddProduct = () => {
   const [name, setName] = useState("");
   const [price, setPrice] = useState<number>(0);
-  const [category, setCategory] = useState<number>(1);
+  const [categoryId, setCategoryId] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
-  const storedUser = localStorage.getItem("currentUser");
-  const currentUser = storedUser ? JSON.parse(storedUser) : null;
+  const [categories, setCategories] = useState<{ _id: string; name: string }[]>([]);
+
+  useEffect(() => {
+    api.get("/categories").then(({ data }) => { setCategories(data); if (data.length) setCategoryId(data[0]._id); });
+  }, []);
 
   const addProduct = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!currentUser) {
-      setError("משתמש לא מחובר");
-      return;
-    }
-
     try {
-      const res = await axios.get(`${API_URL}/products`);
-      const products = res.data;
-      const maxId = products.length > 0 ? Math.max(...products.map((p: any) => Number(p.id))) : 0;
-
-      const newProduct = {
-        id: String(maxId + 1),
-        userId: String(currentUser.id),
-        name,
-        categoryId: category,
-        price,
-        image: image || "/images/defultCake.png",
-        description,
-        buyCount: 0
-      };
-
-      await axios.post(`${API_URL}/products`, newProduct);
-
+      await api.post("/products", { name, categoryId, price, image: image || "/images/defultCake.png", description, buyCount: 0 });
       setSuccess("המוצר נוסף בהצלחה!");
       setError("");
-
-      setName("");
-      setPrice(0);
-      setCategory(1);
-      setDescription("");
-      setImage("");
-
-    } catch (err) {
-      console.log("שגיאה בהוספת מוצר", err);
-      setError("אירעה שגיאה בהוספת המוצר");
+      setName(""); setPrice(0); setDescription(""); setImage("");
+    } catch (err: any) {
+      setError(err.response?.data?.message || "אירעה שגיאה בהוספת המוצר");
       setSuccess("");
     }
   };
-
 
   return (
     <div className="addproduct-container">
@@ -65,40 +38,13 @@ const AddProduct = () => {
       {error && <p className="error">{error}</p>}
 
       <form onSubmit={addProduct}>
-        <input
-          type="text"
-          placeholder="שם מוצר"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-        />
-        <input
-          type="number"
-          placeholder="מחיר"
-          value={price}
-          onChange={(e) => setPrice(Number(e.target.value))}
-          required
-        />
-        <input
-          type="url"
-          placeholder="קישור לתמונה (URL)"
-          value={image}
-          onChange={(e) => setImage(e.target.value)}
-        />
-        <textarea
-          placeholder="תיאור המוצר"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
-        <select value={category} onChange={(e) => setCategory(Number(e.target.value))}>
-          <option value={1}>עוגות</option>
-          <option value={2}>עוגות קומות</option>
-          <option value={3}>עוגות מספרים</option>
-          <option value={4}>קינוחים</option>
-          <option value={5}>עוגיות</option>
-          <option value={6}>פאי</option>
+        <input type="text" placeholder="שם מוצר" value={name} onChange={e => setName(e.target.value)} required />
+        <input type="number" placeholder="מחיר" value={price} onChange={e => setPrice(Number(e.target.value))} required />
+        <input type="url" placeholder="קישור לתמונה (URL)" value={image} onChange={e => setImage(e.target.value)} />
+        <textarea placeholder="תיאור המוצר" value={description} onChange={e => setDescription(e.target.value)} />
+        <select value={categoryId} onChange={e => setCategoryId(e.target.value)}>
+          {categories.map(c => <option key={c._id} value={c._id}>{c.name}</option>)}
         </select>
-
         <button type="submit">הוסף מוצר</button>
       </form>
     </div>

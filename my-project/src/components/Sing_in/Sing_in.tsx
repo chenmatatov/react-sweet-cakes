@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import axios from "axios";
 import "./Sing_in.scss";
-import API_URL from "../../api";
+import api from "../../api";
 
 const Sing_in: React.FC = () => {
   const navigate = useNavigate();
@@ -12,49 +11,33 @@ const Sing_in: React.FC = () => {
   const [sing_inSuccess, setSing_inSuccess] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
-  const validationSchema = Yup.object({
-    name: Yup.string().required("שדה חובה"),
-    email: Yup.string().email("כתובת אימייל לא חוקית").required("שדה חובה"),
-    phone: Yup.string().matches(/^0[0-9]{9}$/, "מספר טלפון לא תקין").required("שדה חובה"),
-    city: Yup.string().required("שדה חובה"),
-    password: Yup.string()
-      .min(6, "לפחות 6 תווים")
-      .matches(/[A-Z]/, "חייב לכלול אות גדולה")
-      .matches(/[0-9]/, "חייב לכלול מספר")
-      .matches(/[!@#$%^&*]/, "חייב לכלול תו מיוחד")
-      .required("שדה חובה"),
-    confirmPassword: Yup.string()
-      .oneOf([Yup.ref("password"), undefined], "הסיסמאות לא תואמות")
-      .required("שדה חובה"),
-  });
-
   const formik = useFormik({
     initialValues: { name: "", email: "", phone: "", city: "", password: "", confirmPassword: "" },
-    validationSchema,
+    validationSchema: Yup.object({
+      name: Yup.string().required("שדה חובה"),
+      email: Yup.string().email("כתובת אימייל לא חוקית").required("שדה חובה"),
+      phone: Yup.string().matches(/^0[0-9]{9}$/, "מספר טלפון לא תקין").required("שדה חובה"),
+      city: Yup.string().required("שדה חובה"),
+      password: Yup.string()
+        .min(6, "לפחות 6 תווים")
+        .matches(/[A-Z]/, "חייב לכלול אות גדולה")
+        .matches(/[0-9]/, "חייב לכלול מספר")
+        .matches(/[!@#$%^&*]/, "חייב לכלול תו מיוחד")
+        .required("שדה חובה"),
+      confirmPassword: Yup.string()
+        .oneOf([Yup.ref("password"), undefined], "הסיסמאות לא תואמות")
+        .required("שדה חובה"),
+    }),
     onSubmit: async (values) => {
       try {
-        const response = await axios.get(`${API_URL}/users`);
-        const users = response.data;
-
-        const existingUser = users.find((u: any) => u.email === values.email);
-        if (existingUser) { setSing_inError("אימייל כבר קיים במערכת"); return; }
-
-        const maxId = users.length > 0 ? Math.max(...users.map((u: any) => Number(u.id))) : 0;
-
-        await axios.post(`${API_URL}/users`, {
-          id: String(maxId + 1),
-          name: values.name,
-          email: values.email,
-          phone: values.phone,
-          city: values.city,
-          password: values.password,
-          isAdmin: false,
+        await api.post("/auth/register", {
+          name: values.name, email: values.email,
+          phone: values.phone, city: values.city, password: values.password,
         });
-
         setSing_inSuccess("הרשמה הצליחה! ניתן להתחבר עכשיו");
         setTimeout(() => navigate("/"), 2000);
-      } catch (error) {
-        setSing_inError("שגיאה בשרת, נסה שוב מאוחר יותר");
+      } catch (err: any) {
+        setSing_inError(err.response?.data?.message || "שגיאה בשרת, נסה שוב מאוחר יותר");
       }
     },
   });

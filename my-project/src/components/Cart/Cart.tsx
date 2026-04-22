@@ -34,31 +34,34 @@ const Cart = () => {
 
       <div className="cart-content">
         <div className="cart-items">
-          {items.map(({ product, quantity }) => (
-            <div key={product.id} className="cart-item">
+          {items.map(({ product, quantity }) => {
+            const pid = product._id || product.id;
+            return (
+            <div key={pid} className="cart-item">
               <img src={product.image} alt={product.name} />
               <div className="cart-item-info">
                 <h3>{product.name}</h3>
                 <p className="cart-item-price">₪{product.price} ליחידה</p>
               </div>
               <div className="cart-item-controls">
-                <button onClick={() => updateQuantity(product.id, quantity - 1)}>−</button>
+                <button onClick={() => updateQuantity(pid, quantity - 1)}>−</button>
                 <span>{quantity}</span>
-                <button onClick={() => updateQuantity(product.id, quantity + 1)}>+</button>
+                <button onClick={() => updateQuantity(pid, quantity + 1)}>+</button>
               </div>
               <p className="cart-item-total">₪{product.price * quantity}</p>
-              <button className="cart-item-remove" onClick={() => removeFromCart(product.id)} title="הסר מהסל">
+              <button className="cart-item-remove" onClick={() => removeFromCart(pid)} title="הסר מהסל">
                 <img src={deleteIcon} alt="הסר" />
               </button>
             </div>
-          ))}
+            );
+          })}
         </div>
 
         <div className="cart-summary">
           <h2>סיכום הזמנה</h2>
           <div className="cart-summary-rows">
             {items.map(({ product, quantity }) => (
-              <div key={product.id} className="summary-row">
+              <div key={product._id || product.id} className="summary-row">
                 <span>{product.name} x{quantity}</span>
                 <span>₪{product.price * quantity}</span>
               </div>

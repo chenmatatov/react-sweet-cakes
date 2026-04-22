@@ -1,23 +1,35 @@
 import React from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import "./NavBar.scss";
 import { useCart } from "../../context/CartContext";
+import { useFavorites } from "../../context/FavoritesContext";
 import profileIcon from "../../assets/icons/profile.svg";
 import homeIcon from "../../assets/icons/home.svg";
 import cakeIcon from "../../assets/icons/cake.svg";
 import addProductIcon from "../../assets/icons/add-product.svg";
 import cartIcon from "../../assets/icons/cart.svg";
+import ChatBot from "../ChatBot/ChatBot";
 
 const NavBar = () => {
   const storedUser = localStorage.getItem("currentUser");
   const user = storedUser ? JSON.parse(storedUser) : null;
   const isAdmin = user?.isAdmin;
   const { totalItems } = useCart();
+  const { favorites } = useFavorites();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("currentUser");
+    navigate("/");
+  };
 
   return (
     <div className="layout">
       <header className="navbar">
-        <div className="logo">🍰 Sweet Cakes</div>
+        <div className="logo">
+          🍰 Sweet Cakes
+          <button className="logout-btn" onClick={handleLogout}>התנתק</button>
+        </div>
         <nav className="nav-links">
           <Link to="/home" className="nav-link" title="בית">
             <img src={homeIcon} className="nav-icon" alt="בית" />
@@ -33,6 +45,10 @@ const NavBar = () => {
               <img src={addProductIcon} className="nav-icon" alt="הוספת מוצר" />
             </Link>
           )}
+          <Link to="/home/favorites" className="nav-link favorites-link" title="המועדפים שלי">
+            🤍
+            {favorites.length > 0 && <span className="cart-badge">{favorites.length}</span>}
+          </Link>
           <Link to="/home/cart" className="nav-link cart-link" title="הסל שלי">
             <img src={cartIcon} className="nav-icon" alt="סל" />
             {totalItems > 0 && <span className="cart-badge">{totalItems}</span>}
@@ -46,6 +62,7 @@ const NavBar = () => {
           <Outlet />
         </div>
       </main>
+      <ChatBot />
     </div>
   );
 };

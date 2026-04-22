@@ -40,13 +40,24 @@
 }
 
 .profile-row {
-  margin-bottom: 15px;
-  font-size: 16px;
-  color: #333;
-  text-align: right;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 13px 0;
+  border-bottom: 1px solid #fce4ec;
+  font-size: 15px;
   direction: rtl;
 
-  span {
+  &:last-of-type { border-bottom: none; }
+
+  .profile-label {
+    color: #b06080;
+    font-weight: 700;
+    font-size: 0.85rem;
+  }
+
+  .profile-value {
+    color: #333;
     font-weight: 500;
   }
 }

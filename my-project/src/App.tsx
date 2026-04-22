@@ -10,7 +10,9 @@ import Profile from "./components/Profile/Profile";
 import AddProduct from "./components/AddProduct/AddProduct";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import Cart from "./components/Cart/Cart";
+import Checkout from "./components/Checkout/Checkout";
 import OrderSuccess from "./components/OrderSuccess/OrderSuccess";
+import Favorites from "./components/Favorites/Favorites";
 
 
 function App() {
@@ -53,9 +55,19 @@ function App() {
             <Cart />
           </ProtectedRoute>
         } />
+        <Route path="favorites" element={
+          <ProtectedRoute>
+            <Favorites />
+          </ProtectedRoute>
+        } />
         <Route path="order-success" element={
           <ProtectedRoute>
             <OrderSuccess />
+          </ProtectedRoute>
+        } />
+        <Route path="checkout" element={
+          <ProtectedRoute>
+            <Checkout />
           </ProtectedRoute>
         } />
       </Route>

@@ -5,6 +5,8 @@ import axios from "axios";
 import type { Product } from "../../models/product";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 import deleteIcon from "../../assets/icons/delete.svg";
+import { useFavorites } from "../../context/FavoritesContext";
+import API_URL from "../../api";
 
 const PRODUCTS_PER_PAGE = 20;
 
@@ -24,13 +26,14 @@ const Products = () => {
   const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false);
   const [productToDelete, setProductToDelete] = useState<Product | null>(null);
 
+  const { toggleFavorite, isFavorite } = useFavorites();
   const storedUser = localStorage.getItem("currentUser");
   const user = storedUser ? JSON.parse(storedUser) : null;
   const isAdmin = user?.isAdmin;
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/categories")
+      .get(`${API_URL}/categories`)
       .then((res) => setCategories(res.data))
       .catch((err) => console.log("שגיאה בטעינת קטגוריות", err));
   }, []);
@@ -39,8 +42,8 @@ const Products = () => {
     setLoading(true);
     try {
       const url = selectedCategoryId === 0
-        ? "http://localhost:3000/products"
-        : `http://localhost:3000/products?categoryId=${selectedCategoryId}`;
+        ? `${API_URL}/products`
+        : `${API_URL}/products?categoryId=${selectedCategoryId}`;
       const res = await axios.get(url);
       setAllProducts(res.data);
     } catch (err) {
@@ -91,7 +94,7 @@ const Products = () => {
   const deleteProduct = async () => {
     if (!productToDelete) return;
     try {
-      await axios.delete(`http://localhost:3000/products/${productToDelete.id}`);
+      await axios.delete(`${API_URL}/products/${productToDelete.id}`);
       fetchAllProducts();
       setShowDeleteModal(false);
       setProductToDelete(null);
@@ -175,6 +178,13 @@ const Products = () => {
               <div className="overlay">
                 <h3>{p.name}</h3>
               </div>
+              <button
+                className={`favorite-btn ${isFavorite(p.id) ? "active" : ""}`}
+                onClick={(e) => { e.stopPropagation(); toggleFavorite(p); }}
+                title="מועדפים"
+              >
+                {isFavorite(p.id) ? "❤️" : "🤍"}
+              </button>
             </div>
 
             <div className="product-info">

@@ -1,0 +1,210 @@
+.chatbot-wrapper {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+/* Toggle button */
+.chatbot-toggle {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #e91e63, #c2185b);
+  border: none;
+  cursor: pointer;
+  font-size: 1.6rem;
+  box-shadow: 0 6px 20px rgba(233, 30, 99, 0.45);
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 700;
+
+  svg {
+    width: 28px;
+    height: 28px;
+    stroke: white;
+    display: block;
+    overflow: visible;
+  }
+
+  &:hover {
+    transform: scale(1.1);
+    box-shadow: 0 10px 28px rgba(233, 30, 99, 0.55);
+  }
+}
+
+/* Chat box */
+.chatbot-box {
+  width: 320px;
+  background: #fff;
+  border-radius: 22px;
+  box-shadow: 0 12px 40px rgba(233, 30, 99, 0.18);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  animation: slideUp 0.25s ease;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Header */
+.chatbot-header {
+  background: linear-gradient(135deg, #e91e63, #c2185b);
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .chatbot-header-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .chatbot-name {
+    color: #fff;
+    font-weight: 800;
+    font-size: 1rem;
+  }
+
+  .chatbot-status {
+    color: rgba(255,255,255,0.8);
+    font-size: 0.75rem;
+  }
+
+  .chatbot-avatar {
+    width: 40px;
+    height: 40px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    border: 2px solid rgba(255,255,255,0.4);
+  }
+}
+
+/* Messages */
+.chatbot-messages {
+  flex: 1;
+  max-height: 300px;
+  overflow-y: auto;
+  padding: 14px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: #fff8fb;
+
+  &::-webkit-scrollbar { width: 4px; }
+  &::-webkit-scrollbar-thumb { background: #f5c6e0; border-radius: 4px; }
+}
+
+.chatbot-msg {
+  max-width: 82%;
+  padding: 10px 14px;
+  border-radius: 16px;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  word-break: break-word;
+
+  &.bot {
+    background: linear-gradient(135deg, #e91e63, #c2185b);
+    color: #fff;
+    border-bottom-right-radius: 4px;
+    align-self: flex-start;
+  }
+
+  &.user {
+    background: #fff;
+    color: #333;
+    border: 1.5px solid #f5c6e0;
+    border-bottom-left-radius: 4px;
+    align-self: flex-end;
+    box-shadow: 0 2px 8px rgba(233,30,99,0.08);
+  }
+}
+
+/* Quick replies */
+.chatbot-quick {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  padding: 10px 12px 6px;
+  background: #fff8fb;
+  border-top: 1px solid #fce4ec;
+
+  button {
+    background: #fff;
+    border: 1.5px solid #e91e63;
+    color: #e91e63;
+    border-radius: 20px;
+    padding: 5px 12px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background 0.2s, color 0.2s;
+
+    &:hover {
+      background: #e91e63;
+      color: #fff;
+    }
+  }
+}
+
+/* Input */
+.chatbot-input-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  background: #fff;
+  border-top: 1px solid #fce4ec;
+
+  input {
+    flex: 1;
+    padding: 10px 14px;
+    border: 1.5px solid #f5c6e0;
+    border-radius: 20px;
+    font-size: 0.88rem;
+    outline: none;
+    font-family: inherit;
+    text-align: right;
+    color: #333;
+    background: #fff8fb;
+    transition: border-color 0.2s;
+
+    &:focus { border-color: #e91e63; }
+    &::placeholder { color: #ccc; }
+  }
+
+  .chatbot-send {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #e91e63, #c2185b);
+    border: none;
+    color: #fff;
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 3px 10px rgba(233,30,99,0.35);
+    transition: transform 0.2s;
+
+    &:hover { transform: scale(1.1); }
+  }
+}

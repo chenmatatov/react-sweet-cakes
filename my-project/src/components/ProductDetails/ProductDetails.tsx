@@ -7,6 +7,7 @@ import type { Review } from "../../models/review";
 import { useCart } from "../../context/CartContext";
 import deleteIcon from "../../assets/icons/delete.svg";
 import cartIcon from "../../assets/icons/cart.svg";
+import API_URL from "../../api";
 
 const ProductDetails = () => {
   const { id } = useParams<{ id: string }>();
@@ -14,6 +15,7 @@ const ProductDetails = () => {
 
   const [product, setProduct] = useState<Product | null>(null);
   const [reviews, setReviews] = useState<Review[]>([]);
+  const [users, setUsers] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState(true);
 
   const [showForm, setShowForm] = useState(false);
@@ -31,7 +33,7 @@ const ProductDetails = () => {
     if (!product) return;
     try {
       const updatedBuyCount = (product.buyCount || 0) + 1;
-      await axios.patch(`http://localhost:3000/products/${productId}`, {
+      await axios.patch(`${API_URL}/products/${productId}`, {
         buyCount: updatedBuyCount,
       });
       setProduct({ ...product, buyCount: updatedBuyCount });
@@ -46,16 +48,17 @@ const ProductDetails = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const productRes = await axios.get(
-          `http://localhost:3000/products/${productId}`
-        );
+        const productRes = await axios.get(`${API_URL}/products/${productId}`);
 
-        const reviewsRes = await axios.get(
-          `http://localhost:3000/reviews?productId=${productId}`
-        );
+        const reviewsRes = await axios.get(`${API_URL}/reviews?productId=${productId}`);
+
+        const usersRes = await axios.get(`${API_URL}/users`);
+        const usersMap: Record<string, string> = {};
+        usersRes.data.forEach((u: any) => { usersMap[String(u.id)] = u.name; });
 
         setProduct(productRes.data);
         setReviews(reviewsRes.data);
+        setUsers(usersMap);
       } catch (err) {
         console.log("שגיאה בטעינת הנתונים", err);
       } finally {
@@ -70,11 +73,9 @@ const ProductDetails = () => {
     if (!reviewToDelete) return;
 
     try {
-      await axios.delete(`http://localhost:3000/reviews/${reviewToDelete}`);
+      await axios.delete(`${API_URL}/reviews/${reviewToDelete}`);
       
-      const reviewsRes = await axios.get(
-        `http://localhost:3000/reviews?productId=${productId}`
-      );
+      const reviewsRes = await axios.get(`${API_URL}/reviews?productId=${productId}`);
       setReviews(reviewsRes.data);
       setShowDeleteModal(false);
       setReviewToDelete(null);
@@ -91,7 +92,7 @@ const ProductDetails = () => {
     if (!comment.trim()) return;
 
     try {
-      const res = await axios.get("http://localhost:3000/reviews");
+      const res = await axios.get(`${API_URL}/reviews`);
       const allReviews = res.data;
       const maxId = allReviews.length > 0 ? Math.max(...allReviews.map((r: any) => Number(r.id))) : 0;
 
@@ -103,10 +104,7 @@ const ProductDetails = () => {
         comment,
       };
 
-      const response = await axios.post(
-        "http://localhost:3000/reviews",
-        newReview
-      );
+      const response = await axios.post(`${API_URL}/reviews`, newReview);
 
       setReviews((prev) => [...prev, response.data]);
       
@@ -162,6 +160,7 @@ const ProductDetails = () => {
 
         {reviews.map((r) => (
           <div key={r.id} className="review">
+            <div className="review-author">👤 {users[String(r.userId)] || "משתמש"}</div>
             <div className="stars">{"⭐".repeat(r.rating)}</div>
             <p>{r.comment}</p>
 

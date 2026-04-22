@@ -6,7 +6,7 @@ import cartIcon from "../../assets/icons/cart.svg";
 import deleteIcon from "../../assets/icons/delete.svg";
 
 const Cart = () => {
-  const { items, removeFromCart, updateQuantity, totalPrice, clearCart } = useCart();
+  const { items, removeFromCart, updateQuantity, totalPrice } = useCart();
   const navigate = useNavigate();
 
   if (items.length === 0) {
@@ -25,6 +25,7 @@ const Cart = () => {
   }
 
   return (
+    <div className="cart-page">
     <div className="cart-container">
       <h1>
         <img src={cartIcon} alt="" className="cart-title-icon" />
@@ -67,10 +68,11 @@ const Cart = () => {
             <span>סה"כ לתשלום:</span>
             <span>₪{totalPrice}</span>
           </div>
-          <button className="checkout-btn" onClick={() => { clearCart(); navigate("/home/order-success"); }}>לתשלום</button>
-          <button className="clear-btn" onClick={clearCart}>ריקון הסל</button>
+          <button className="checkout-btn" onClick={() => navigate("/home/checkout")}>לתשלום</button>
+          <button className="continue-btn" onClick={() => navigate("/home/products")}>המשך קנייה</button>
         </div>
       </div>
+    </div>
     </div>
   );
 };

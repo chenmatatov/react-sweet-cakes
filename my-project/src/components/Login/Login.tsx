@@ -5,12 +5,15 @@ import * as Yup from "yup";
 import axios from "axios";
 import "./Login.scss";
 import { useCart } from "../../context/CartContext";
+import { useFavorites } from "../../context/FavoritesContext";
+import API_URL from "../../api";
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
   const [loginError, setLoginError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const { loadCart } = useCart();
+  const { loadFavorites } = useFavorites();
 
   const validationSchema = Yup.object({
     email: Yup.string().email("כתובת אימייל לא חוקית").required("שדה חובה"),
@@ -24,7 +27,7 @@ const Login: React.FC = () => {
     validationSchema,
     onSubmit: async (values) => {
       try {
-        const response = await axios.get("http://localhost:3000/users");
+        const response = await axios.get(`${API_URL}/users`);
         const users = response.data;
 
         const user = users.find(
@@ -38,6 +41,7 @@ const Login: React.FC = () => {
 
         localStorage.setItem("currentUser", JSON.stringify(user));
         loadCart(user.id);
+        loadFavorites(user.id);
         navigate("/home");
       } catch (error) {
         console.error(error);

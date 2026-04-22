@@ -141,6 +141,13 @@
     position: relative;
     color: #333;
 
+    .review-author {
+      font-weight: 700;
+      font-size: 0.88rem;
+      color: #c2185b;
+      margin-bottom: 5px;
+    }
+
     button {
       position: absolute;
       top: 10px;

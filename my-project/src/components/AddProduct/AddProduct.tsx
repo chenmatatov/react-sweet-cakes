@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./AddProduct.scss";
 import axios from "axios";
+import API_URL from "../../api";
 
 const AddProduct = () => {
   const [name, setName] = useState("");
@@ -21,7 +22,7 @@ const AddProduct = () => {
     }
 
     try {
-      const res = await axios.get("http://localhost:3000/products");
+      const res = await axios.get(`${API_URL}/products`);
       const products = res.data;
       const maxId = products.length > 0 ? Math.max(...products.map((p: any) => Number(p.id))) : 0;
 
@@ -36,10 +37,7 @@ const AddProduct = () => {
         buyCount: 0
       };
 
-      await axios.post(
-        "http://localhost:3000/products",
-        newProduct
-      );
+      await axios.post(`${API_URL}/products`, newProduct);
 
       setSuccess("המוצר נוסף בהצלחה!");
       setError("");

@@ -2,9 +2,11 @@
   "users": [
     {
       "id": "1",
-      "name": "חן לוי",
+      "name": "חן מטאטוב ",
       "email": "chen@example.com",
       "password": "C12345",
+      "phone": "0501234567",
+      "city": "תל אביב",
       "isAdmin": true
     },
     {
@@ -12,6 +14,8 @@
       "name": "נועה כהן",
       "email": "noa@example.com",
       "password": "n12345",
+      "phone": "0521234567",
+      "city": "ירושלים",
       "isAdmin": false
     },
     {
@@ -19,6 +23,8 @@
       "name": "מיה בר",
       "email": "mya@example.com",
       "password": "pass123",
+      "phone": "0531234567",
+      "city": "חיפה",
       "isAdmin": false
     },
     {
@@ -26,6 +32,8 @@
       "name": "דנה שמש",
       "email": "dana@example.com",
       "password": "danapass",
+      "phone": "0541234567",
+      "city": "באר שבע",
       "isAdmin": false
     },
     {
@@ -33,6 +41,8 @@
       "name": "יואב כהן",
       "email": "yoav@example.com",
       "password": "yoav123",
+      "phone": "0551234567",
+      "city": "רמת גן",
       "isAdmin": true
     },
     {
@@ -40,6 +50,8 @@
       "name": "אסף לוי",
       "email": "assaf@example.com",
       "password": "assafpass",
+      "phone": "0561234567",
+      "city": "פתח תקווה",
       "isAdmin": false
     },
     {
@@ -47,6 +59,8 @@
       "name": "מיכל לוי",
       "email": "michal@example.com",
       "password": "michal123",
+      "phone": "0571234567",
+      "city": "נתניה",
       "isAdmin": false
     },
     {
@@ -54,6 +68,8 @@
       "name": "רוני כהן",
       "email": "roni@example.com",
       "password": "roni123",
+      "phone": "0581234567",
+      "city": "אשדוד",
       "isAdmin": false
     },
     {
@@ -61,6 +77,8 @@
       "name": "דניאל שמש",
       "email": "daniel@example.com",
       "password": "danielpass",
+      "phone": "0591234567",
+      "city": "ראשון לציון",
       "isAdmin": false
     },
     {
@@ -68,6 +86,8 @@
       "name": "יעל בר",
       "email": "yael@example.com",
       "password": "yael123",
+      "phone": "0501112233",
+      "city": "הרצליה",
       "isAdmin": false
     },
     {
@@ -75,6 +95,8 @@
       "name": "שמעון ",
       "email": "S@gmail.com",
       "password": "S123**",
+      "phone": "0502223344",
+      "city": "רחובות",
       "isAdmin": false
     },
     {
@@ -82,6 +104,8 @@
       "name": "ראובן כהן",
       "email": "r@example.com",
       "password": "R123**",
+      "phone": "0503334455",
+      "city": "מודיעין",
       "isAdmin": false
     },
     {
@@ -89,6 +113,8 @@
       "name": "שירה",
       "email": "shira@example.com",
       "password": "S123##",
+      "phone": "0504445566",
+      "city": "כפר סבא",
       "isAdmin": false
     },
     {
@@ -96,6 +122,8 @@
       "name": "חן",
       "email": "c@gmail.com",
       "password": "C1234!",
+      "phone": "0505556677",
+      "city": "תל אביב",
       "isAdmin": false
     },
     {
@@ -103,6 +131,8 @@
       "name": "חן",
       "email": "ch@gmail.com",
       "password": "Ch1234!",
+      "phone": "0506667788",
+      "city": "גבעתיים",
       "isAdmin": false
     },
     {
@@ -110,6 +140,8 @@
       "name": "שרה כהן",
       "email": "shara@example.com",
       "password": "S555!!",
+      "phone": "0507778899",
+      "city": "חולון",
       "isAdmin": false
     },
     {
@@ -117,6 +149,8 @@
       "name": "דוד",
       "email": "d@gmail.com",
       "password": "D999##",
+      "phone": "0508889900",
+      "city": "בת ים",
       "isAdmin": false
     },
     {
@@ -124,6 +158,8 @@
       "name": "שני",
       "email": "shany@gmail.com",
       "password": "Shany1@",
+      "phone": "0509990011",
+      "city": "לוד",
       "isAdmin": false
     }
   ],
@@ -135,7 +171,7 @@
       "price": 195,
       "image": "/images/Numbercake18.jpg",
       "description": "עוגת מספר 18 מעוצבת בקפידה עם קרם עשיר וקישוטים אלגנטיים, מושלמת לחגיגת יום הולדת מרגשת.",
-      "buyCount": 14
+      "buyCount": 16
     },
     {
       "id": "2",
@@ -144,7 +180,7 @@
       "price": 220,
       "image": "/images/Numbercake40.jpg",
       "description": "עוגת מספר 40 חגיגית ומרשימה, משלבת מראה יוקרתי עם טעמים אהובים.",
-      "buyCount": 5
+      "buyCount": 10
     },
     {
       "id": "3",
@@ -153,7 +189,7 @@
       "price": 30,
       "image": "/images/macarons.jpg",
       "description": "מקרונים צבעוניים ועדינים במילוי קרם עשיר, נמסים בפה ומוסיפים צבע ומתיקות לכל אירוע.",
-      "buyCount": 29
+      "buyCount": 30
     },
     {
       "id": "4",
@@ -162,7 +198,7 @@
       "price": 95,
       "image": "/images/cheesecake.jpg",
       "description": "עוגת גבינה אפויה במרקם קרמי וחלק, עם טעם קלאסי ואהוב שמתאים לכל רגע.",
-      "buyCount": 15
+      "buyCount": 16
     },
     {
       "id": "5",
@@ -243,7 +279,7 @@
       "price": 38,
       "image": "/images/souffle-chocolate.jpg",
       "description": "סופלה שוקולד חמים עם לב נוזלי, קינוח מושלם לסיום ארוחה.",
-      "buyCount": 17
+      "buyCount": 18
     },
     {
       "id": "14",
@@ -252,7 +288,7 @@
       "price": 195,
       "image": "/images/tiered-fruit-cake.jpg",
       "description": "עוגת קומות מרעננת עם פירות טריים, צבעונית ומתאימה לאירועי קיץ.",
-      "buyCount": 18
+      "buyCount": 19
     },
     {
       "id": "15",
@@ -261,7 +297,7 @@
       "price": 80,
       "image": "/images/tiramisu.jpg",
       "description": "טירמיסו איטלקי קלאסי עם קרם מסקרפונה וקפה איכותי.",
-      "buyCount": 18
+      "buyCount": 19
     },
     {
       "id": "16",
@@ -306,7 +342,7 @@
       "price": 26,
       "image": "/images/choc-chip-cookie.jpg",
       "description": "עוגיית שוקולד צ'יפס פריכה מבחוץ ורכה מבפנים, קלאסיקה אהובה.",
-      "buyCount": 21
+      "buyCount": 23
     },
     {
       "id": "22",
@@ -627,7 +663,7 @@
       "price": 90,
       "image": "https://www.cookie-fairy.com/wp-content/uploads/2024/06/pear-almond-tart-1.jpg",
       "description": "טארט אגסים קרם שקדים  ושוקולד לבן",
-      "buyCount": 6
+      "buyCount": 7
     },
     {
       "id": "58",
@@ -707,7 +743,7 @@
       "price": 40,
       "image": "https://www.cookie-fairy.com/wp-content/uploads/2017/04/meringuekisses1.jpg",
       "description": "נשיקות מושלמות ",
-      "buyCount": 2
+      "buyCount": 3
     }
   ],
   "categories": [
@@ -988,13 +1024,6 @@
       "userId": "8",
       "rating": 4,
       "comment": "טעימה, אבל הייתי מוסיפה קצת יותר קינמון."
-    },
-    {
-      "id": "38",
-      "productId": "65",
-      "userId": "9",
-      "rating": 5,
-      "comment": " הילדים אהבו מאוד."
     },
     {
       "id": "39",
@@ -1555,6 +1584,13 @@
       "userId": "2",
       "rating": 4,
       "comment": "WOW!!"
+    },
+    {
+      "id": "123",
+      "productId": 4,
+      "userId": "2",
+      "rating": 5,
+      "comment": "מושלםם"
     }
   ]
 }

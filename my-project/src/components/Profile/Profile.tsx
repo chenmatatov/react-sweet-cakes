@@ -4,6 +4,8 @@ import axios from "axios";
 import type { User } from "../../models/user";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
+import { useFavorites } from "../../context/FavoritesContext";
+import API_URL from "../../api";
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -17,6 +19,8 @@ const Profile = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [phone, setPhone] = useState("");
+  const [city, setCity] = useState("");
 
   const [loading, setLoading] = useState(true);
 
@@ -28,12 +32,14 @@ const Profile = () => {
 
     const fetchUser = async () => {
       try {
-        const res = await axios.get(`http://localhost:3000/users/${Number(currentUser.id)}`);
+        const res = await axios.get(`${API_URL}/users/${Number(currentUser.id)}`);
 
         setUser(res.data);
         if (!editing) {
           setName(res.data.name);
           setEmail(res.data.email);
+          setPhone(res.data.phone || "");
+          setCity(res.data.city || "");
         }
       } catch (err) {
         console.log("שגיאה בטעינת משתמש", err);
@@ -52,14 +58,13 @@ const Profile = () => {
       ...user,
       name,
       email,
+      phone,
+      city,
       ...(password && { password }),
     };
 
     try {
-      await axios.put(
-        `http://localhost:3000/users/${user.id}`,
-        updatedUser
-      );
+      await axios.put(`${API_URL}/users/${user.id}`, updatedUser);
       setUser(updatedUser);
       setPassword("");
       setEditing(false);
@@ -75,13 +80,17 @@ const Profile = () => {
     setPassword("");
     setName(user?.name || "");
     setEmail(user?.email || "");
+    setPhone((user as any)?.phone || "");
+    setCity((user as any)?.city || "");
   };
 
   const { clearCart } = useCart();
+  const { clearFavorites } = useFavorites();
 
   const logout = () => {
     localStorage.removeItem("currentUser");
     clearCart();
+    clearFavorites();
     navigate("/");
   };
 
@@ -99,21 +108,36 @@ const Profile = () => {
         {!editing ? (
           <>
             <div className="profile-row">
-              <span>שם: {user.name}</span>
+              <span className="profile-label">שם</span>
+              <span className="profile-value">{user.name}</span>
             </div>
-
             <div className="profile-row">
-              <span>אימייל: {user.email}</span>
+              <span className="profile-label">אימייל</span>
+              <span className="profile-value">{user.email}</span>
             </div>
-
+            {(user as any).phone && (
+              <div className="profile-row">
+                <span className="profile-label">טלפון</span>
+                <span className="profile-value">{(user as any).phone}</span>
+              </div>
+            )}
+            {(user as any).city && (
+              <div className="profile-row">
+                <span className="profile-label">עיר</span>
+                <span className="profile-value">{(user as any).city}</span>
+              </div>
+            )}
             <div className="profile-row">
-              <span>הרשאה: {user.isAdmin ? "מנהל" : "משתמש רגיל"}</span>
+              <span className="profile-label">הרשאה</span>
+              <span className="profile-value">{user.isAdmin ? "מנהל" : "משתמש רגיל"}</span>
             </div>
 
             <div className="buttons">
               <button onClick={() => {
-                setName(user.name);
+              setName(user.name);
                 setEmail(user.email);
+                setPhone((user as any).phone || "");
+                setCity((user as any).city || "");
                 setPassword("");
                 setEditing(true);
               }}>עריכת פרטים</button>
@@ -124,29 +148,11 @@ const Profile = () => {
           </>
         ) : (
           <>
-            <input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder="שם מלא"
-              className="profile-input"
-            />
-
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="אימייל"
-              className="profile-input"
-            />
-
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="סיסמה חדשה (אופציונלי)"
-              className="profile-input"
-            />
+            <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="שם מלא" className="profile-input" />
+            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="אימייל" className="profile-input" />
+            <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="טלפון" className="profile-input" />
+            <input type="text" value={city} onChange={(e) => setCity(e.target.value)} placeholder="עיר" className="profile-input" />
+            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="סיסמה חדשה (אופציונלי)" className="profile-input" />
 
             <div className="buttons">
               <button onClick={saveChanges}>שמור</button>

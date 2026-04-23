@@ -3,7 +3,7 @@
   margin: 0 auto;
   padding: 24px 16px 60px;
   direction: rtl;
-  background: #fff0f5;
+  background: white;
   min-height: 100vh;
 
   h1 {
@@ -103,7 +103,7 @@
 /* ── Form Card ── */
 .checkout-form-card {
   flex: 1;
-  background: #fff;
+  background: #fff0f5;
   border-radius: 18px;
   padding: 24px;
   box-shadow: 0 4px 16px rgba(233, 30, 99, 0.08);
@@ -136,7 +136,7 @@
     font-size: 0.9rem;
     text-align: right;
     outline: none;
-    background: #fff;
+    background: white;
     color: #333;
     transition: border-color 0.2s, box-shadow 0.2s;
     font-family: inherit;
@@ -239,7 +239,7 @@
 /* ── Confirm ── */
 .confirm-card {
   .confirm-section {
-    background: #fff0f5;
+    background: white;
     border-radius: 14px;
     padding: 16px 20px;
     margin-bottom: 14px;
@@ -263,7 +263,7 @@
 /* ── Summary ── */
 .checkout-summary {
   width: 240px;
-  background: #fff;
+  background: #fff0f5;
   border-radius: 18px;
   padding: 20px;
   box-shadow: 0 4px 16px rgba(233, 30, 99, 0.08);

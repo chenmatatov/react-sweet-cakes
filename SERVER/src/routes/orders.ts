@@ -18,6 +18,7 @@ const OrderSchema = new Schema<IOrder>(
       name: String,
       price: Number,
       quantity: Number,
+      image: String,
     }],
     shipping: {
       firstName: String, lastName: String, email: String,
@@ -47,8 +48,19 @@ router.post("/", protect, async (req: AuthRequest, res: Response): Promise<void>
 // GET /api/orders/my
 router.get("/my", protect, async (req: AuthRequest, res: Response): Promise<void> => {
   try {
-    const orders = await Order.find({ userId: req.user!.id }).sort({ createdAt: -1 });
-    res.json(orders);
+    const orders = await Order.find({ userId: req.user!.id })
+      .populate("items.productId", "image")
+      .sort({ createdAt: -1 });
+
+    const result = orders.map(order => ({
+      ...order.toObject(),
+      items: order.items.map((item: any) => ({
+        ...item.toObject(),
+        image: item.image || item.productId?.image || "",
+      }))
+    }));
+
+    res.json(result);
   } catch {
     res.status(500).json({ message: "שגיאת שרת" });
   }

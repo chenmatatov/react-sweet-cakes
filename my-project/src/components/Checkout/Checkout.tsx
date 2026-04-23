@@ -96,6 +96,7 @@ const Checkout = () => {
           name: product.name,
           price: product.price,
           quantity,
+          image: product.image,
         })),
         shipping,
         totalPrice: totalPrice + SHIPPING,

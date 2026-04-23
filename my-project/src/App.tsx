@@ -14,6 +14,8 @@ import Checkout from "./components/Checkout/Checkout";
 import OrderSuccess from "./components/OrderSuccess/OrderSuccess";
 import Favorites from "./components/Favorites/Favorites";
 import Orders from "./components/Orders/Orders";
+import PriceCalculator from "./components/PriceCalculator/PriceCalculator";
+import BookingCalendar from "./components/BookingCalendar/BookingCalendar";
 
 
 function App() {
@@ -71,11 +73,9 @@ function App() {
             <Checkout />
           </ProtectedRoute>
         } />
-        <Route path="orders" element={
-          <ProtectedRoute>
-            <Orders />
-          </ProtectedRoute>
-        } />
+        <Route path="orders" element={<ProtectedRoute><Orders /></ProtectedRoute>} />
+        <Route path="calculator" element={<ProtectedRoute><PriceCalculator /></ProtectedRoute>} />
+        <Route path="booking" element={<ProtectedRoute><BookingCalendar /></ProtectedRoute>} />
       </Route>
 
     </Routes>

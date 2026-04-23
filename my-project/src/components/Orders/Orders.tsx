@@ -8,6 +8,7 @@ interface OrderItem {
   name: string;
   price: number;
   quantity: number;
+  image?: string;
 }
 
 interface Order {
@@ -20,7 +21,7 @@ interface Order {
 }
 
 const statusMap: Record<string, string> = {
-  pending: "ממתינה לאישור",
+  pending: "התקבלה",
   confirmed: "אושרה",
   shipped: "בדרך אליך",
   delivered: "נמסרה",
@@ -41,22 +42,24 @@ const Orders = () => {
   if (loading) return <p className="orders-loading">טוען הזמנות...</p>;
 
   return (
+    <div className="orders-page">
     <div className="orders-container">
       <h1>ההזמנות שלי</h1>
 
       {orders.length === 0 ? (
         <div className="orders-empty">
-          <span>📋</span>
+          <div className="empty-icon" />
           <p>אין הזמנות עדיין</p>
           <button onClick={() => navigate("/home/products")}>לחנות</button>
         </div>
       ) : (
         <div className="orders-list">
-          {orders.map(order => (
+          {orders.map((order, idx) => (
             <div key={order._id} className="order-card">
               <div className="order-header">
-                <div className="order-date">
-                  {new Date(order.createdAt).toLocaleDateString("he-IL")}
+                <div className="order-meta">
+                  <span className="order-number">הזמנה #{orders.length - idx}</span>
+                  <span className="order-date">{new Date(order.createdAt).toLocaleDateString("he-IL")}</span>
                 </div>
                 <span className={`order-status status-${order.status}`}>
                   {statusMap[order.status] || order.status}
@@ -66,6 +69,7 @@ const Orders = () => {
               <div className="order-items">
                 {order.items.map((item, i) => (
                   <div key={i} className="order-item">
+                    {item.image && <img src={item.image} alt={item.name} className="item-img" />}
                     <span className="item-name">{item.name}</span>
                     <span className="item-qty">x{item.quantity}</span>
                     <span className="item-price">₪{item.price * item.quantity}</span>
@@ -74,15 +78,14 @@ const Orders = () => {
               </div>
 
               <div className="order-footer">
-                <span className="order-address">
-                  📍 {order.shipping.address}, {order.shipping.city}
-                </span>
+                <span className="order-address">{order.shipping.address}, {order.shipping.city}</span>
                 <span className="order-total">סה"כ: ₪{order.totalPrice}</span>
               </div>
             </div>
           ))}
         </div>
       )}
+    </div>
     </div>
   );
 };

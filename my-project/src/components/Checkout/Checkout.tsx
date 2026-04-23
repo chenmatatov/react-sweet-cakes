@@ -38,30 +38,27 @@ const validatePayment = (p: typeof initialPayment): PaymentErrors => {
   return e;
 };
 
-const currentUser = JSON.parse(localStorage.getItem("currentUser") || "{}");
-const nameParts = (currentUser.name || "").split(" ");
-
-const initialShipping = {
-  firstName: nameParts[0] || "",
-  lastName: nameParts.slice(1).join(" ") || "",
-  email: currentUser.email || "",
-  phone: currentUser.phone || "",
-  address: currentUser.address || "",
-  city: currentUser.city || "",
-  zip: currentUser.zip || "",
-};
-
-const initialPayment = {
-  cardNumber: "", cardName: currentUser.name || "", expiry: "", cvv: "",
-};
-
 const Checkout = () => {
   const { items, totalPrice, clearCart } = useCart();
   const navigate = useNavigate();
   const [step, setStep] = useState(0);
 
-  const [shipping, setShipping] = useState(initialShipping);
-  const [payment, setPayment] = useState(initialPayment);
+  const currentUser = JSON.parse(localStorage.getItem("currentUser") || "{}");
+  const nameParts = (currentUser.name || "").split(" ");
+
+  const [shipping, setShipping] = useState({
+    firstName: nameParts[0] || "",
+    lastName: nameParts.slice(1).join(" ") || "",
+    email: currentUser.email || "",
+    phone: currentUser.phone || "",
+    address: currentUser.address || "",
+    city: currentUser.city || "",
+    zip: currentUser.zip || "",
+  });
+
+  const [payment, setPayment] = useState({
+    cardNumber: "", cardName: currentUser.name || "", expiry: "", cvv: "",
+  });
   const [shippingErrors, setShippingErrors] = useState<ShippingErrors>({});
   const [paymentErrors, setPaymentErrors] = useState<PaymentErrors>({});
 

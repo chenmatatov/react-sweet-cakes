@@ -504,8 +504,20 @@
   .slide-arrow { display: none; }
   .slide-content { right: 5%; left: 5%; max-width: 100%; }
   .slide-thumbs { display: none; }
+  .countdown-timer { gap: 8px; }
+  .countdown-unit { min-width: 64px; padding: 12px 10px;
+    .countdown-num { font-size: 1.8rem; }
+  }
+  .features-grid { grid-template-columns: 1fr; gap: 16px; }
+  .countdown-section { padding: 40px 20px; }
+  .features-section { padding: 50px 20px; }
+  .categories-section { padding: 50px 20px; }
 }
 
 @media (max-width: 420px) {
   .categories-grid { grid-template-columns: 1fr; }
+  .countdown-unit { min-width: 56px; padding: 10px 8px;
+    .countdown-num { font-size: 1.5rem; }
+    .countdown-label { font-size: 0.65rem; }
+  }
 }

@@ -23,13 +23,13 @@ const categories = [
 
 const INTERVAL = 4000;
 
-const getTimeUntilFriday = () => {
+const getTimeUntilThursday = () => {
   const now = new Date();
   const target = new Date();
   const day = now.getDay();
-  const daysUntilFriday = day <= 5 ? 5 - day : 6;
-  target.setDate(now.getDate() + daysUntilFriday);
-  target.setHours(18, 0, 0, 0);
+  const daysUntilThursday = day <= 4 ? 4 - day : 7 - day + 4;
+  target.setDate(now.getDate() + daysUntilThursday);
+  target.setHours(24, 0, 0, 0);
   if (now >= target) target.setDate(target.getDate() + 7);
   const diff = target.getTime() - now.getTime();
   return {
@@ -44,11 +44,11 @@ const Home = () => {
   const [current, setCurrent] = useState(0);
   const [progress, setProgress] = useState(0);
   const [animKey, setAnimKey] = useState(0);
-  const [countdown, setCountdown] = useState(getTimeUntilFriday());
+  const [countdown, setCountdown] = useState(getTimeUntilThursday());
   const progressRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   useEffect(() => {
-    const timer = setInterval(() => setCountdown(getTimeUntilFriday()), 1000);
+    const timer = setInterval(() => setCountdown(getTimeUntilThursday()), 1000);
     return () => clearInterval(timer);
   }, []);
 
@@ -124,7 +124,7 @@ const Home = () => {
       {/* ── COUNTDOWN ── */}
       <section className="countdown-section">
         <div className="countdown-text">
-          <h2>הזמיני עד יום שישי 18:00</h2>
+          <h2>הזמיני עד יום חמישי 12:00 בלילה</h2>
           <p>לקבלת העוגה שלך בסוף השבוע</p>
         </div>
         <div className="countdown-timer">

@@ -3,6 +3,7 @@
   min-height: 100vh;
   padding: 30px 20px 60px;
   direction: rtl;
+  box-sizing: border-box;
 }
 
 .booking-container {
@@ -15,6 +16,8 @@
     font-weight: 900;
     text-align: center;
     margin-bottom: 8px;
+
+    @media (max-width: 768px) { font-size: 1.5rem; }
   }
 }
 
@@ -42,7 +45,10 @@
   gap: 28px;
   align-items: flex-start;
 
-  @media (max-width: 768px) { flex-direction: column; }
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 16px;
+  }
 }
 
 .calendar-card {
@@ -53,7 +59,11 @@
   width: 420px;
   flex-shrink: 0;
 
-  @media (max-width: 768px) { width: 100%; }
+  @media (max-width: 768px) {
+    width: 100%;
+    padding: 16px;
+    box-sizing: border-box;
+  }
 }
 
 .calendar-header {
@@ -102,7 +112,7 @@
 .calendar-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 6px;
+  gap: 3px;
 }
 
 .cal-day {
@@ -111,7 +121,7 @@
   border: none;
   border-radius: 50%;
   background: none;
-  font-size: 0.92rem;
+  font-size: 0.78rem;
   font-weight: 600;
   cursor: pointer;
   color: #333;
@@ -120,6 +130,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 0;
 
   &:hover:not(:disabled) { background: #fce4ec; color: #e91e63; }
   &.today { border: 2px solid #e91e63; color: #e91e63; }
@@ -166,6 +177,12 @@
   box-shadow: 0 4px 20px rgba(233, 30, 99, 0.08);
 
   h2 { color: #e91e63; font-size: 1.2rem; margin-bottom: 20px; }
+
+  @media (max-width: 768px) {
+    padding: 16px;
+    box-sizing: border-box;
+    width: 100%;
+  }
 }
 
 .selected-date {

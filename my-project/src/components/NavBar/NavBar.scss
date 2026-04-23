@@ -1,30 +1,24 @@
-/* הלייאאוט הראשי */
 .layout {
   display: flex;
   flex-direction: column;
-  height: 100vh;
-  overflow: hidden;
+  min-height: 100vh;
 }
 
-/* navbar */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
   background-color: #e91e63;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
   flex-shrink: 0;
   z-index: 1000;
 }
 
 .logo {
-  font-size: 24px;
+  font-size: 22px;
   font-weight: bold;
   color: #fff;
-  display: flex;
-  align-items: center;
-  gap: 12px;
 }
 
 .logout-btn {
@@ -37,17 +31,18 @@
   font-weight: 600;
   cursor: pointer;
   transition: background 0.2s;
-
-  &:hover {
-    background: rgba(255,255,255,0.35);
-  }
+  font-family: inherit;
+  &:hover { background: rgba(255,255,255,0.35); }
 }
 
+/* Desktop nav */
 .nav-links {
   display: flex;
-  gap: 20px;
+  gap: 18px;
   flex-direction: row-reverse;
   align-items: center;
+
+  @media (max-width: 768px) { display: none; }
 }
 
 .nav-link {
@@ -58,6 +53,7 @@
   display: flex;
   align-items: center;
   gap: 6px;
+  position: relative;
 }
 
 .nav-icon {
@@ -68,24 +64,11 @@
   transition: transform 0.2s, opacity 0.2s;
 }
 
-.nav-link:hover .nav-icon {
-  transform: scale(1.2);
-  opacity: 1;
-}
+.nav-link:hover .nav-icon { transform: scale(1.2); opacity: 1; }
+.nav-link:hover { color: #ffefd5; }
 
-.nav-link:hover {
-  color: #ffefd5;
-}
-
-.favorites-link {
-  position: relative;
-  font-size: 1.4rem;
-}
-
-.cart-link {
-  position: relative;
-  font-size: 1.4rem;
-}
+.favorites-link { position: relative; font-size: 1.4rem; }
+.cart-link { position: relative; font-size: 1.4rem; }
 
 .cart-badge {
   position: absolute;
@@ -106,24 +89,129 @@
 .user-greeting {
   color: #fff;
   font-weight: 600;
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(255,255,255,0.2);
   padding: 8px 15px;
   border-radius: 20px;
+  white-space: nowrap;
 }
 
-/* תוכן הדף */
+/* Mobile right */
+.mobile-right {
+  display: none;
+  align-items: center;
+  gap: 16px;
+
+  @media (max-width: 768px) { display: flex; }
+
+  .nav-link { font-size: 1.4rem; }
+}
+
+/* Hamburger */
+.hamburger {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 4px;
+
+  span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: white;
+    border-radius: 2px;
+    transition: 0.2s;
+  }
+}
+
+/* Mobile menu */
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 280px;
+  height: 100vh;
+  background: white;
+  z-index: 2000;
+  box-shadow: -4px 0 20px rgba(0,0,0,0.15);
+  display: flex;
+  flex-direction: column;
+  direction: rtl;
+  animation: slideIn 0.25s ease;
+}
+
+@keyframes slideIn {
+  from { transform: translateX(100%); }
+  to   { transform: translateX(0); }
+}
+
+.mobile-menu-header {
+  background: #e91e63;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  span { color: white; font-weight: 700; font-size: 1rem; }
+
+  button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.3rem;
+    cursor: pointer;
+  }
+}
+
+.mobile-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  text-decoration: none;
+  color: #333;
+  font-size: 1rem;
+  font-weight: 600;
+  border-bottom: 1px solid #fce4ec;
+  transition: background 0.2s;
+
+  img {
+    width: 22px;
+    height: 22px;
+    filter: invert(18%) sepia(90%) saturate(2000%) hue-rotate(315deg) brightness(95%);
+  }
+
+  &:hover { background: #fff0f5; color: #e91e63; }
+}
+
+.mobile-logout {
+  margin: 20px;
+  padding: 12px;
+  background: #e91e63;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  margin-top: auto;
+  &:hover { background: #c2185b; }
+}
+
+/* Content */
 .content {
   flex: 1;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
 }
 
 .content-wrapper {
   flex: 1;
   width: 100%;
-  background: linear-gradient(to bottom right, #ffe4e1, #ffb6c1);
+  background: #fff0f5;
   display: flex;
   flex-direction: column;
-  overflow: auto;
 }

@@ -25,6 +25,7 @@ const Products = () => {
   const [productToDelete, setProductToDelete] = useState<Product | null>(null);
 
   const { toggleFavorite, isFavorite } = useFavorites();
+  const [showFilters, setShowFilters] = useState(false);
   const storedUser = localStorage.getItem("currentUser");
   const user = storedUser ? JSON.parse(storedUser) : null;
   const isAdmin = user?.isAdmin;
@@ -86,7 +87,11 @@ const Products = () => {
     <div className="products-container">
       <h1>המוצרים שלנו</h1>
 
-      <div className="filters-bar">
+      <button className="filters-toggle" onClick={() => setShowFilters(f => !f)}>
+        {showFilters ? "סגור סננים ↑" : "סננים ▼"}
+      </button>
+
+      <div className={`filters-bar ${showFilters ? "open" : ""}`}>
         <input type="text" placeholder="חיפוש לפי שם..." value={searchName} onChange={e => setSearchName(e.target.value)} className="search-input" />
         <select value={sortBy} onChange={e => setSortBy(e.target.value)} className="sort-select">
           <option value="">מיין לפי...</option>

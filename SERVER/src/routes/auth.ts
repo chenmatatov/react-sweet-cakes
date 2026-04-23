@@ -26,6 +26,7 @@ router.post("/register", async (req: Request, res: Response): Promise<void> => {
       user: { id: user._id, name: user.name, email: user.email, phone: user.phone, city: user.city, isAdmin: user.isAdmin }
     });
   } catch (err) {
+    console.error("Register error:", err);
     res.status(500).json({ message: "שגיאת שרת" });
   }
 });
@@ -52,6 +53,7 @@ router.post("/login", async (req: Request, res: Response): Promise<void> => {
       user: { id: user._id, name: user.name, email: user.email, phone: user.phone, city: user.city, isAdmin: user.isAdmin }
     });
   } catch (err) {
+    console.error("Login error:", err);
     res.status(500).json({ message: "שגיאת שרת" });
   }
 });

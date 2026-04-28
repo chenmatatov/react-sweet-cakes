@@ -5,37 +5,24 @@
   justify-content: center;
   align-items: center;
   direction: rtl;
+  padding: 20px;
+  box-sizing: border-box;
 
   .order-success-card {
     background: white;
     border-radius: 20px;
-    padding: 50px 60px;
+    padding: 40px 30px;
     text-align: center;
     box-shadow: 0 10px 30px rgba(233, 30, 99, 0.15);
     max-width: 480px;
-    width: 90%;
+    width: 100%;
 
-    .success-icon {
-      font-size: 72px;
-      margin-bottom: 20px;
-      animation: bounce 0.6s ease;
-    }
-
-    h1 {
-      font-size: 28px;
-      color: #e91e63;
-      margin-bottom: 15px;
-    }
-
-    p {
-      font-size: 16px;
-      color: #555;
-      line-height: 1.6;
-      margin-bottom: 30px;
-    }
+    .success-icon { font-size: 60px; margin-bottom: 16px; animation: bounce 0.6s ease; }
+    h1 { font-size: 1.4rem; color: #e91e63; margin-bottom: 12px; }
+    p { font-size: 0.95rem; color: #555; line-height: 1.6; margin-bottom: 24px; }
 
     button {
-      padding: 12px 35px;
+      padding: 12px 30px;
       background: #e91e63;
       color: white;
       border: none;
@@ -43,12 +30,8 @@
       font-size: 1rem;
       font-weight: bold;
       cursor: pointer;
-      transition: background 0.2s, transform 0.2s;
-
-      &:hover {
-        background: #c2185b;
-        transform: scale(1.05);
-      }
+      transition: background 0.2s;
+      &:hover { background: #c2185b; }
     }
   }
 }

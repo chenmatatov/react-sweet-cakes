@@ -18,6 +18,9 @@ const Products = () => {
   const [sortBy, setSortBy] = useState("");
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
+  const [searchInput, setSearchInput] = useState("");
+  const [minPriceInput, setMinPriceInput] = useState("");
+  const [maxPriceInput, setMaxPriceInput] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -39,6 +42,10 @@ const Products = () => {
     try {
       const params: any = {};
       if (selectedCategoryId) params.categoryId = selectedCategoryId;
+      if (searchName.trim()) params.search = searchName.trim();
+      if (sortBy) params.sortBy = sortBy;
+      if (minPrice) params.minPrice = minPrice;
+      if (maxPrice) params.maxPrice = maxPrice;
       const { data } = await api.get("/products", { params });
       setAllProducts(data);
     } catch {
@@ -48,23 +55,24 @@ const Products = () => {
     }
   };
 
-  useEffect(() => { setCurrentPage(1); fetchProducts(); }, [selectedCategoryId]);
-  useEffect(() => { setCurrentPage(1); }, [searchName, sortBy, minPrice, maxPrice]);
+  useEffect(() => {
+    const t = setTimeout(() => setSearchName(searchInput), 500);
+    return () => clearTimeout(t);
+  }, [searchInput]);
 
-  const getFiltered = () => {
-    let result = [...allProducts];
-    if (searchName.trim()) result = result.filter(p => p.name.toLowerCase().includes(searchName.toLowerCase()));
-    if (minPrice !== "") result = result.filter(p => p.price >= Number(minPrice));
-    if (maxPrice !== "") result = result.filter(p => p.price <= Number(maxPrice));
-    if (sortBy === "price_asc") result.sort((a, b) => a.price - b.price);
-    else if (sortBy === "price_desc") result.sort((a, b) => b.price - a.price);
-    else if (sortBy === "buyCount_desc") result.sort((a, b) => (b.buyCount || 0) - (a.buyCount || 0));
-    else if (sortBy === "name_asc") result.sort((a, b) => a.name.localeCompare(b.name, "he"));
-    else if (sortBy === "name_desc") result.sort((a, b) => b.name.localeCompare(a.name, "he"));
-    return result;
-  };
+  useEffect(() => {
+    const t = setTimeout(() => setMinPrice(minPriceInput), 600);
+    return () => clearTimeout(t);
+  }, [minPriceInput]);
 
-  const filtered = getFiltered();
+  useEffect(() => {
+    const t = setTimeout(() => setMaxPrice(maxPriceInput), 600);
+    return () => clearTimeout(t);
+  }, [maxPriceInput]);
+
+  useEffect(() => { setCurrentPage(1); fetchProducts(); }, [selectedCategoryId, searchName, sortBy, minPrice, maxPrice]);
+
+  const filtered = allProducts;
   const totalPages = Math.ceil(filtered.length / PRODUCTS_PER_PAGE);
   const currentProducts = filtered.slice((currentPage - 1) * PRODUCTS_PER_PAGE, currentPage * PRODUCTS_PER_PAGE);
 
@@ -92,7 +100,7 @@ const Products = () => {
       </button>
 
       <div className={`filters-bar ${showFilters ? "open" : ""}`}>
-        <input type="text" placeholder="חיפוש לפי שם..." value={searchName} onChange={e => setSearchName(e.target.value)} className="search-input" />
+        <input type="text" placeholder="חיפוש לפי שם..." value={searchInput} onChange={e => setSearchInput(e.target.value)} className="search-input" />
         <select value={sortBy} onChange={e => setSortBy(e.target.value)} className="sort-select">
           <option value="">מיין לפי...</option>
           <option value="price_asc">מחיר: נמוך לגבוה</option>
@@ -102,11 +110,11 @@ const Products = () => {
           <option value="name_desc">שם: ת-א</option>
         </select>
         <div className="price-filter">
-          <input type="number" placeholder="מחיר מינימום" value={minPrice} onChange={e => setMinPrice(e.target.value)} className="price-input" />
+          <input type="number" placeholder="מינימום" value={minPriceInput} onChange={e => setMinPriceInput(e.target.value)} className="price-input" />
           <span>-</span>
-          <input type="number" placeholder="מחיר מקסימום" value={maxPrice} onChange={e => setMaxPrice(e.target.value)} className="price-input" />
+          <input type="number" placeholder="מקסימום" value={maxPriceInput} onChange={e => setMaxPriceInput(e.target.value)} className="price-input" />
         </div>
-        <button className="reset-btn" onClick={() => { setSearchName(""); setSortBy(""); setMinPrice(""); setMaxPrice(""); setSelectedCategoryId(""); }}>נקה סננים</button>
+        <button className="reset-btn" onClick={() => { setSearchInput(""); setSearchName(""); setSortBy(""); setMinPriceInput(""); setMaxPriceInput(""); setMinPrice(""); setMaxPrice(""); setSelectedCategoryId(""); }}>נקה סננים</button>
       </div>
 
       <div className="categories">

@@ -7,11 +7,16 @@ const router = Router();
 // GET /api/products
 router.get("/", async (req: Request, res: Response): Promise<void> => {
   try {
-    const { categoryId, search, sortBy } = req.query;
+    const { categoryId, search, sortBy, minPrice, maxPrice } = req.query;
     const filter: any = {};
 
     if (categoryId) filter.categoryId = categoryId;
     if (search) filter.name = { $regex: search, $options: "i" };
+    if (minPrice || maxPrice) {
+      filter.price = {};
+      if (minPrice) filter.price.$gte = Number(minPrice);
+      if (maxPrice) filter.price.$lte = Number(maxPrice);
+    }
 
     let query = Product.find(filter).populate("categoryId", "name");
 
